@@ -99,68 +99,43 @@ include('header.php');
     </div>
     
     <div class="row justify-content-center" style="gap: 30px 0;">
-      <!-- Anshul Sharma -->
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+      <!-- Archit Prajapati -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="50">
         <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AS</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Anshul Sharma</h3>
+          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AP</div>
+          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Archit Prajapati</h3>
           <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Back-End & Business Logic</p>
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/anshul.sharma23/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/friendanshul1998" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-facebook"></i></a>
-          </div>
+          <div style="display: flex; justify-content: center; gap: 15px; min-height: 27px;"></div>
         </div>
       </div>
 
-      <!-- Keshav Sharma -->
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <!-- Archita Panday -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
         <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">KS</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Keshav Sharma</h3>
+          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AP</div>
+          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Archita Panday</h3>
           <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Database Architecture & Connectivity</p>
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/sharmakeshav0101/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/keshav.sharma.0101" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-facebook"></i></a>
-          </div>
+          <div style="display: flex; justify-content: center; gap: 15px; min-height: 27px;"></div>
         </div>
       </div>
 
-      <!-- Prince Parihar -->
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+      <!-- Ananya Gupta -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="150" style="margin-top: 30px;">
         <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">PP</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Prince Parihar</h3>
+          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AG</div>
+          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Ananya Gupta</h3>
           <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">UI/UX Design & Front-End</p>
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/princepariharr/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/princeparihar22" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-facebook"></i></a>
-          </div>
+          <div style="display: flex; justify-content: center; gap: 15px; min-height: 27px;"></div>
         </div>
       </div>
 
-      <!-- Sukrut Patil -->
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" style="margin-top: 30px;">
+      <!-- Apuba Gosh -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="200" style="margin-top: 30px;">
         <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">SP</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Sukrut Patil</h3>
-          <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Full Stack Engineering</p>
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/sukrut_patill/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/sukrutpatil77" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-twitter"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Vaibhav Pahwa -->
-      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" style="margin-top: 30px;">
-        <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">VP</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Vaibhav Pahwa</h3>
-          <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Front-End Development</p>
-          <div style="display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/vishu_pahwa/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/vishu.pahwa" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-facebook"></i></a>
-          </div>
+          <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AG</div>
+          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Apuba Gosh</h3>
+          <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Documentation</p>
+          <div style="display: flex; justify-content: center; gap: 15px; min-height: 27px;"></div>
         </div>
       </div>
     </div>

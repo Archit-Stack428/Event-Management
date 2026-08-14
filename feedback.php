@@ -75,11 +75,10 @@ echo "<form action='feedbacksubmit.php?eventid=".$eventid."' method='post' encty
                     <div class="col-sm-4 col-md-3 item">
                         <h3>Team</h3>
                         <ul>
-                            <li><a href="https://www.instagram.com/anshul.sharma23/">Anshul Sharm</a></li>
-                            <li><a href="https://www.instagram.com/sharmakeshav0101/">Keshav Sharma</a></li>
-                            <li><a href="https://www.instagram.com/vishu_pahwa/">Vaibhav Pahwa</a></li>
-                            <li><a href="https://www.instagram.com/princepariharr/">Prince Parihar</a></li>
-                            <li><a href="https://www.instagram.com/sukrut_patill/">Sukrut Patil</a></li>
+                            <li><a href="#">Archit Prajapati</a></li>
+                            <li><a href="#">Archita Panday</a></li>
+                            <li><a href="#">Ananya Gupta</a></li>
+                            <li><a href="#">Apuba Gosh</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
@@ -90,9 +89,6 @@ echo "<form action='feedbacksubmit.php?eventid=".$eventid."' method='post' encty
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">
-					<a class="shadow" href="https://www.facebook.com/princeparihar22" style="color: rgb(255,255,255);background-color: #350bdc;"><i class="icon ion-social-facebook"></i></a>
-					<a class="shadow" href="https://twitter.com/sukrutpatil77" style="background-color: #0980d6;color: rgb(255,255,255);"><i class="icon ion-social-twitter"></i></a>
-					<a class="shadow-lg" href="https://www.instagram.com/anshul.sharma23/" style="color: rgb(255,255,255);background-color: #e001f4;"><i class="icon ion-social-instagram"></i></a>
                             <p class="text-center copyright">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MMDU Event Hub © 2020</p>
                     </div>
                 </div>

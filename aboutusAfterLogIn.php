@@ -124,40 +124,36 @@
                 <p class="text-center"></p>
             </div>
             <div class="row people">
-                <div class="col-md-6 col-lg-4 item">
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(1).png">
-                        <h3 class="name">Anshul Sharma</h3>
-                        <p class="title">BAck End</p>
-                        <p class="description"></p>
-                        <div class="social"><a href="https://www.facebook.com/friendanshul1998"><i class="fa fa-facebook-official"></i></a><a href="#"></a><a href="https://www.instagram.com/anshul.sharma23"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(3).png">
-                        <h3 class="name">Prince Parihar</h3>
-                        <p class="title">front end and UI</p>
-                        <p class="description"></p>
-                        <div class="social"><a href="https://www.facebook.com/princeparihar22/"><i class="fa fa-facebook-official"></i></a><a href="#"></a><a href="https://www.instagram.com/princepariharr"><i class="fa fa-instagram"></i></a></div>
+                <!-- Archit Prajapati -->
+                <div class="col-md-6 item" style="margin-bottom: 30px;">
+                    <div class="box">
+                        <h3 class="name">Archit Prajapati</h3>
+                        <p class="title">Back-End & Business Logic</p>
+                        <p class="description">Initials: AP</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 item">
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(2).png">
-                        <h3 class="name">Keshav Sharma</h3>
-                        <p class="title">Database Connectivity</p>
-                        <p class="description"></p>
-                        <div class="social"><a href="https://www.facebook.com/keshav.sharma.0101"><i class="fa fa-facebook-official"></i></a><a href="#"></a><a href="https://www.instagram.com/sharmakeshav0101"><i class="fa fa-instagram"></i></a></div>
-                    </div>
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(4).png">
-                        <h3 class="name">Sukrut Patil</h3>
-                        <p class="title">back end and front end</p>
-                        <p class="description"></p>
-                        <div class="social"><a href="https://www.facebook.com/sukrut.patil.526"><i class="fa fa-facebook-official"></i></a><a href="#"></a><a href="https://www.instagram.com/sukrut_patill"><i class="fa fa-instagram"></i></a></div>
+                <!-- Archita Panday -->
+                <div class="col-md-6 item" style="margin-bottom: 30px;">
+                    <div class="box">
+                        <h3 class="name">Archita Panday</h3>
+                        <p class="title">Database Architecture & Connectivity</p>
+                        <p class="description">Initials: AP</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 item">
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(5).png">
-                        <h3 class="name">Vaibhav Pahwa</h3>
-                        <p class="title">Front end</p>
-                        <p class="description"></p>
-                        <div class="social"><a href="https://www.facebook.com/vishu.pahwa"><i class="fa fa-facebook-official"></i></a><a href="#"></a><a href="https://www.instagram.com/vishu_pahwa"><i class="fa fa-instagram"></i></a></div>
+                <!-- Ananya Gupta -->
+                <div class="col-md-6 item" style="margin-bottom: 30px;">
+                    <div class="box">
+                        <h3 class="name">Ananya Gupta</h3>
+                        <p class="title">UI/UX Design & Front-End</p>
+                        <p class="description">Initials: AG</p>
+                    </div>
+                </div>
+                <!-- Apuba Gosh -->
+                <div class="col-md-6 item" style="margin-bottom: 30px;">
+                    <div class="box">
+                        <h3 class="name">Apuba Gosh</h3>
+                        <p class="title">Documentation</p>
+                        <p class="description">Initials: AG</p>
                     </div>
                 </div>
             </div>
@@ -170,11 +166,10 @@
                     <div class="col-sm-4 col-md-3 item">
                         <h3>Team</h3>
                         <ul>
-                            <li><a href="https://www.instagram.com/anshul.sharma23/">Anshul Sharm</a></li>
-                            <li><a href="https://www.instagram.com/sharmakeshav0101/">Keshav Sharma</a></li>
-                            <li><a href="https://www.instagram.com/vishu_pahwa/">Vaibhav Pahwa</a></li>
-                            <li><a href="https://www.instagram.com/princepariharr/">Prince Parihar</a></li>
-                            <li><a href="https://www.instagram.com/sukrut_patill/">Sukrut Patil</a></li>
+                            <li><a href="#">Archit Prajapati</a></li>
+                            <li><a href="#">Archita Panday</a></li>
+                            <li><a href="#">Ananya Gupta</a></li>
+                            <li><a href="#">Apuba Gosh</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
@@ -185,9 +180,6 @@
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">
-					<a class="shadow" href="https://www.facebook.com/princeparihar22" style="color: rgb(255,255,255);background-color: #350bdc;"><i class="icon ion-social-facebook"></i></a>
-					<a class="shadow" href="https://twitter.com/sukrutpatil77" style="background-color: #0980d6;color: rgb(255,255,255);"><i class="icon ion-social-twitter"></i></a>
-					<a class="shadow-lg" href="https://www.instagram.com/anshul.sharma23/" style="color: rgb(255,255,255);background-color: #e001f4;"><i class="icon ion-social-instagram"></i></a>
                             <p class="text-center copyright">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;MMDU Event Hub © 2020</p>
                     </div>
                 </div>
