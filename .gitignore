@@ -1,0 +1,32 @@
+# Secrets / environment
+.env
+.env.*
+!.env.example
+config.php
+
+# VS Code
+.vscode/
+
+# Logs / temporary
+*.log
+*.tmp
+*.temp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local database / runtime
+*.sqlite
+*.sqlite3
+
+# QA / temporary files
+_qa_*.php
+qa_results.txt
+
+# Unused/vendor examples
+examples/
+# Dependencies
+vendor/
+node_modules/
+stripe-php/README.md
