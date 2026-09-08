@@ -29,5 +29,5 @@ if (!defined('RAZORPAY_WEBHOOK_SECRET')) define('RAZORPAY_WEBHOOK_SECRET', geten
 // ---- Google OAuth Client ID ----
 if (!defined('GOOGLE_CLIENT_ID')) define('GOOGLE_CLIENT_ID', getenv('GOOGLE_CLIENT_ID') ?: 'YOUR_GOOGLE_CLIENT_ID_PLACEHOLDER.apps.googleusercontent.com');
 
-// ---- Optional: disable when not debugging ----
-if (!defined('APP_DEBUG')) define('APP_DEBUG', getenv('APP_DEBUG') !== false ? (bool)getenv('APP_DEBUG') : false);
+// ---- Optional: enable debugging for transparent diagnosis ----
+if (!defined('APP_DEBUG')) define('APP_DEBUG', getenv('APP_DEBUG') !== false ? (bool)getenv('APP_DEBUG') : true);

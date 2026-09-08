@@ -1,8 +1,14 @@
 <?php
-// Set working directory to project root so all relative requires (config.php, dbconnect.php) work seamlessly
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+
+// Ensure /tmp is used for sessions in serverless lambdas
+@ini_set('session.save_path', '/tmp');
+
 chdir(__DIR__ . '/..');
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 // Handle root path
 if ($uri === '/' || $uri === '' || $uri === '/index.php') {
