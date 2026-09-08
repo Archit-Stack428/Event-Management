@@ -335,9 +335,18 @@
         var pay = document.getElementById('payment');
         if (cfg.price != 0 && pay) {
           pay.innerHTML =
-            '<label>Card Number</label><input type="text" name="card_num" size="20" autocomplete="off" class="card-number">' +
-            '<label>CVC</label><input type="text" name="cvc" size="4" autocomplete="off" class="card-cvc">' +
-            '<label>Expiration (MM/YYYY)</label><input type="text" name="exp_month" size="2" class="card-expiry-month"> <span style="color:var(--eh-muted);">/</span> <input type="text" name="exp_year" size="4" class="card-expiry-year">';
+            '<div class="eh-upi-card" onclick="if(window.openUpiQrPaymentModal)window.openUpiQrPaymentModal(event);" role="button" tabindex="0" style="background:rgba(124,58,237,0.1); border:1px solid rgba(124,58,237,0.3); border-radius:12px; padding:14px 16px; margin:14px 0; cursor:pointer;">' +
+              '<div style="display:flex; align-items:center; gap:12px;">' +
+                '<div style="font-size:26px; color:var(--eh-accent);"><i class="fas fa-qrcode"></i></div>' +
+                '<div>' +
+                  '<div style="font-weight:700; color:#fff; font-size:15px;">Instant UPI Payment</div>' +
+                  '<div style="font-size:13px; color:var(--eh-muted); margin-top:2px;">Pay securely using any UPI app</div>' +
+                '</div>' +
+              '</div>' +
+              '<div style="font-size:12px; color:var(--eh-muted); margin-top:8px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08);">' +
+                'Google Pay • PhonePe • Paytm • BHIM • Other UPI Apps' +
+              '</div>' +
+            '</div>';
         }
         if (x == 0) {
           if (regForm) {

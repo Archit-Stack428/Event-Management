@@ -27,22 +27,26 @@
         </div>
         </nav>
     </div>
-    <div style="margin-left: 200px;margin-right: 200px;">
-        <div class="card text-center border rounded shadow-lg" style="width: 700px;margin-left: 200px;margin-bottom: 100px;">
-            <div class="card-body text-center">
-                <h4 class="text-center card-title">Verification QR Code</h4>
+    <div style="max-width: 600px; margin: 0 auto 80px auto; padding: 0 16px;">
+        <div class="card text-center border rounded shadow-lg" style="width: 100%; border-radius: 16px; overflow: hidden; background: #fff;">
+            <div class="card-body text-center" style="padding: 30px 24px;">
+                <h3 class="text-center card-title" style="font-weight: 700; color: #1e293b; margin-bottom: 16px;">Event Ticket &amp; QR Code</h3>
          <?php
 include('dbconnect.php');
 $txnid = trim($_GET['txnid'] ?? '');
 $eventid = (int)($_GET['eventid'] ?? 0);
 
-$url = "eventmanagement2315.000webhostapp.com/success.php?txnid=".urlencode($txnid)."&eventid=".$eventid;
+$proto = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$dir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+$url = $proto . $host . $dir . "/success.php?txnid=" . urlencode($txnid) . "&eventid=" . $eventid;
 
 $minimum = 0;
 $time = '';
 $venue = '';
+$event_title = '';
 
-$stmt = $conn->prepare("SELECT min_team, time, event_venue FROM create_event WHERE event_id = ?");
+$stmt = $conn->prepare("SELECT event_title, min_team, time, event_venue FROM create_event WHERE event_id = ?");
 $stmt->bind_param('i', $eventid);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -50,80 +54,75 @@ if ($row = $result->fetch_assoc()) {
     $minimum = $row['min_team'];
     $time = $row['time'];
     $venue = $row['event_venue'];
+    $event_title = $row['event_title'];
 }
 $stmt->close();
 
 $name = '';
 $email = '';
+$payment_status = 'pending';
 
 if($minimum == 0){
-    $stmt = $conn->prepare("SELECT email, name FROM singleevent_registration WHERE txn_id = ?");
+    $stmt = $conn->prepare("SELECT email, name, payment_status FROM singleevent_registration WHERE txn_id = ?");
     $stmt->bind_param('s', $txnid);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($row = $result->fetch_assoc()) {
         $name = $row['name'];
         $email = $row['email'];
+        $payment_status = strtolower($row['payment_status'] ?? 'pending');
     }
     $stmt->close();
-    
-    if ($email !== '') {
-        $to_email = $email; 
-        $from = 'anshul.zero@gmail.com';
-        $subject = 'Successfully Registered';
-        $message = "Dear " . $name . ",\nYou have successfully registered the event. Below are the details of the event:\n\nTime: " . $time . "\nVenue: " . $venue . "\nWe will be pleased to see you there...\n\nThank You";
-        $headers = "FROM: Event HUB <".$from.">\r\n";
-        mail($to_email,$subject,$message,$headers);
-    }
-}
-else{
-    $stmt = $conn->prepare("SELECT emails, team_name FROM teamevent_registration WHERE txn_id = ?");
+} else {
+    $stmt = $conn->prepare("SELECT emails, team_name, payment_status FROM teamevent_registration WHERE txn_id = ?");
     $stmt->bind_param('s', $txnid);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($row = $result->fetch_assoc()) {
         $name = $row['team_name'];
         $email = $row['emails'];
+        $payment_status = strtolower($row['payment_status'] ?? 'pending');
     }
     $stmt->close();
-    
-    if ($email !== '') {
-        $to_email = $email; 
-        $from = 'anshul.zero@gmail.com';
-        $subject = 'Successfully Registered';
-        $message = "Dear team " . $name . ",\nYou have successfully registered the event. Below are the details of the event:\n\nTime: " . $time . "\nVenue: " . $venue . "\nWe will be pleased to see you there...\n\nThank You";
-        $headers = "FROM: Event HUB <".$from.">\r\n";
-        mail($to_email,$subject,$message,$headers);
-    }
 }
 ?>
-              <center></center>  <div id="qrcode" ></div></center>
-                
-    
-    <script type="text/javascript">
-      function updateQRCode(text) {
 
-        var element = document.getElementById("qrcode");
-
-        var bodyElement = document.body;
-        if(element.lastChild)
-          element.replaceChild(showQRCode(text), element.lastChild);
-        else
-          element.appendChild(showQRCode(text));
-
-      }
-
-      updateQRCode('<?php echo $url; ?>');
-    </script>
-                
-                
-                
-                <div class="text-center">
-                    <p class="text-center" style="width: 300px;margin-left: 175px;font-size: 18px;">Make sure to get the Screen Shot of the QR code to verify your registration at Venue</p>
-                </div>
+        <?php if ($payment_status === 'pending'): ?>
+          <div style="margin: 12px auto 20px auto; background: #fefce8; border: 1px solid #fde047; border-radius: 12px; padding: 14px; text-align: left;">
+            <div style="font-weight: 700; color: #854d0e; font-size: 15px; margin-bottom: 4px;">
+              <i class="fas fa-clock"></i> Payment Status: Pending Verification
             </div>
+            <div style="font-size: 13px; color: #713f12; line-height: 1.4;">
+              Your registration has been submitted with UPI Reference / UTR: <strong style="font-family:monospace;"><?php echo htmlspecialchars($txnid); ?></strong>. The organizer will verify your payment before final confirmation.
+            </div>
+          </div>
+        <?php else: ?>
+          <div style="margin: 12px auto 20px auto; background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 14px; text-align: left;">
+            <div style="font-weight: 700; color: #166534; font-size: 15px; margin-bottom: 4px;">
+              <i class="fas fa-check-circle"></i> Payment Status: Confirmed &amp; Paid
+            </div>
+            <div style="font-size: 13px; color: #14532d; line-height: 1.4;">
+              Your payment has been verified! Below is your venue check-in QR code.
+            </div>
+          </div>
+        <?php endif; ?>
+
+        <?php if ($event_title): ?>
+          <h5 style="color:#334155; font-weight:600; margin-bottom:4px;"><?php echo htmlspecialchars($event_title); ?></h5>
+          <p style="color:#64748b; font-size:14px; margin-bottom:14px;"><strong>Participant:</strong> <?php echo htmlspecialchars($name); ?></p>
+        <?php endif; ?>
+
+        <center>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=<?php echo urlencode($url); ?>" alt="Registration Attendance QR Code" style="margin:10px auto; display:block; border:8px solid #f8fafc; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.1); max-width:220px; width:100%;">
+        </center>
+          
+        <div class="text-center" style="margin-top:16px;">
+          <p style="font-size: 14px; color:#475569; margin: 0 auto; max-width: 380px;">Take a screenshot of this QR code to present at the venue for instant check-in.</p>
+          <a href="index.php" class="btn btn-primary" style="margin-top:16px; border-radius:8px; padding:8px 24px;">Return to Home</a>
         </div>
+      </div>
     </div>
+  </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

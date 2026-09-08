@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 config.php
+*.bak
 
 # VS Code
 .vscode/
@@ -11,6 +12,7 @@ config.php
 *.log
 *.tmp
 *.temp
+.chrome-test-profile/
 
 # OS
 .DS_Store
@@ -23,6 +25,7 @@ Thumbs.db
 # QA / temporary files
 _qa_*.php
 qa_results.txt
+tmp_runner.php
 
 # Unused/vendor examples
 examples/

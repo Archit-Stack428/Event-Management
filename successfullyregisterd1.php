@@ -37,6 +37,7 @@ $rollno = trim($_GET['rollno'] ?? '');
 $eventid = (int)($_GET['eventid'] ?? 0);
 $mobilno = trim($_GET['mobileno'] ?? '');
 
+$url = "eventmanagement2315.000webhostapp.com/success1.php?rollno=" . urlencode($rollno) . "&eventid=" . $eventid;
 $minimum = 0;
 $venue = '';
 $time = '';
@@ -56,7 +57,6 @@ $name = '';
 $email = '';
 
 if($minimum == 0){
-    $url = "eventmanagement2315.000webhostapp.com/success1.php?rollno=" . urlencode($rollno) . "&eventid=" . $eventid;
     
     $stmt = $conn->prepare("SELECT email, name FROM singleevent_registration WHERE roll_no = ? AND event_id = ?");
     $stmt->bind_param('si', $rollno, $eventid);
@@ -77,28 +77,9 @@ if($minimum == 0){
         mail($to_email,$subject,$message,$headers);
     }
 }
-else{
-
-?>
-                
-               <center></center>  <div id="qrcode" ></div></center>
-                
-    
-    <script type="text/javascript">
-      function updateQRCode(text) {
-
-        var element = document.getElementById("qrcode");
-
-        var bodyElement = document.body;
-        if(element.lastChild)
-          element.replaceChild(showQRCode(text), element.lastChild);
-        else
-          element.appendChild(showQRCode(text));
-
-      }
-
-      updateQRCode('<?php echo $url; ?>');
-    </script> 
+              <center>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=<?php echo urlencode($url); ?>" alt="Registration QR Code" style="margin:20px auto; display:block; border:8px solid #fff; border-radius:10px; box-shadow:0 10px 25px rgba(0,0,0,0.15); max-width:200px;">
+              </center>
                 
                 
                 <div class="text-center">

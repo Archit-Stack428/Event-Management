@@ -3,8 +3,6 @@ input[type=text] , textarea{
     
     
     display:inline-block;
-    *display: inline;    
-    zoom:1;             
     vertical-align:middle;
     
 	
@@ -33,8 +31,6 @@ input[type=text] , textarea{
 
 label {
     display:inline-block;
-    *display: inline;     /* for IE7*/
-    zoom:1;              /* for IE7*/
     float: left;
     padding-top: 10px;
     text-align: right;

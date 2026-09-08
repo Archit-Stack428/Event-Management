@@ -90,3 +90,24 @@ CREATE TABLE IF NOT EXISTS feedback (
     stars INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Razorpay Event Orders (UPI Payments)
+CREATE TABLE IF NOT EXISTS event_orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    razorpay_order_id VARCHAR(100) NOT NULL,
+    razorpay_payment_id VARCHAR(100) DEFAULT NULL,
+    event_id INT NOT NULL,
+    registration_type ENUM('individual', 'team') NOT NULL,
+    registration_data LONGTEXT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(10) DEFAULT 'INR',
+    status ENUM('pending', 'paid', 'failed', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    paid_at TIMESTAMP NULL DEFAULT NULL,
+    UNIQUE KEY uq_razorpay_order_id (razorpay_order_id),
+    UNIQUE KEY uq_razorpay_payment_id (razorpay_payment_id),
+    INDEX idx_event_orders_event (event_id),
+    INDEX idx_event_orders_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

@@ -12,9 +12,10 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'id13212736_event');
 
-// ---- Stripe API keys ----
-define('STRIPE_SECRET_KEY', 'sk_test_...');
-define('STRIPE_PUBLISHABLE_KEY', 'pk_test_...');
+// ---- Razorpay API credentials (UPI-Only Payments) ----
+define('RAZORPAY_KEY_ID', 'rzp_test_...');
+define('RAZORPAY_KEY_SECRET', '...');
+define('RAZORPAY_WEBHOOK_SECRET', '...');
 
 // ---- Google OAuth Client ID ----
 define('GOOGLE_CLIENT_ID', 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com');

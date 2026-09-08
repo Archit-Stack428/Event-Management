@@ -87,6 +87,15 @@ if ($organizer_name !== '') {
                 $team_regs[] = $r;
             }
         }
+
+        // Query Razorpay UPI event orders
+        $orders_list = [];
+        $q_orders = $conn->query("SELECT * FROM event_orders WHERE event_id IN ($in_clause) ORDER BY id DESC");
+        if ($q_orders) {
+            while ($o = $q_orders->fetch_assoc()) {
+                $orders_list[] = $o;
+            }
+        }
     }
 }
 
@@ -235,10 +244,55 @@ include('header.php');
     <!-- ===== Registrations Management ===== -->
     <div class="eh-panel" id="dashRegistrations">
       <div class="eh-panel-head">
-        <h2>Registrations</h2>
+        <h2>Registrations &amp; Payments</h2>
       </div>
 
-      <h3 style="margin-top:24px; color:#fff; font-size:18px;"><i class="fas fa-user"></i> Individual Registrations</h3>
+      <!-- UPI Orders Table -->
+      <h3 style="margin-top:24px; color:#fff; font-size:18px;"><i class="fas fa-qrcode" style="color:var(--eh-accent);"></i> UPI Payments &amp; Orders</h3>
+      <?php if (!empty($orders_list)): ?>
+        <div style="overflow-x:auto;">
+          <table class="eh-table" style="width:100%; border-collapse:collapse; margin-top:10px;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--eh-border); text-align:left; color:var(--eh-muted); font-size:13px;">
+                <th style="padding:12px;">Order ID</th>
+                <th style="padding:12px;">Event</th>
+                <th style="padding:12px;">Type</th>
+                <th style="padding:12px;">Amount</th>
+                <th style="padding:12px;">Reference ID</th>
+                <th style="padding:12px;">UTR / Txn ID</th>
+                <th style="padding:12px;">Status</th>
+                <th style="padding:12px;">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($orders_list as $o): ?>
+                <?php
+                  $st = strtolower($o['status'] ?? 'pending');
+                  $badgeClass = 'draft';
+                  if ($st === 'paid') $badgeClass = 'published';
+                  elseif ($st === 'failed') $badgeClass = 'closed';
+                  elseif ($st === 'cancelled') $badgeClass = 'closed';
+                ?>
+                <tr style="border-bottom:1px solid rgba(255,255,255,0.05); font-size:14px;">
+                  <td style="padding:12px; font-weight:600; color:#fff;">#<?php echo (int)$o['id']; ?></td>
+                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($event_titles[$o['event_id']] ?? 'Event #' . $o['event_id']); ?></td>
+                  <td style="padding:12px; color:var(--eh-muted); text-transform:capitalize;"><?php echo htmlspecialchars($o['registration_type']); ?></td>
+                  <td style="padding:12px; color:#fff; font-weight:600;">₹<?php echo number_format($o['amount'], 2); ?></td>
+                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-muted);"><?php echo htmlspecialchars($o['razorpay_order_id']); ?></td>
+                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-accent);"><?php echo htmlspecialchars($o['razorpay_payment_id'] ?: 'Pending'); ?></td>
+                  <td style="padding:12px;"><span class="eh-card-status <?php echo $badgeClass; ?>"><?php echo ucfirst($st); ?></span></td>
+                  <td style="padding:12px; color:var(--eh-muted);"><?php echo date('M j, Y H:i', strtotime($o['created_at'])); ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      <?php else: ?>
+        <div class="eh-empty" style="padding:30px;"><p>No UPI orders recorded yet.</p></div>
+      <?php endif; ?>
+
+      <!-- Individual Registrations Table -->
+      <h3 style="margin-top:36px; color:#fff; font-size:18px;"><i class="fas fa-user"></i> Individual Registrations</h3>
       <?php if (!empty($single_regs)): ?>
         <div style="overflow-x:auto;">
           <table class="eh-table" style="width:100%; border-collapse:collapse; margin-top:10px;">
@@ -251,33 +305,50 @@ include('header.php');
                 <th style="padding:12px;">Email</th>
                 <th style="padding:12px;">Mobile</th>
                 <th style="padding:12px;">Amount</th>
-                <th style="padding:12px;">Txn ID</th>
+                <th style="padding:12px;">UTR / Txn ID</th>
                 <th style="padding:12px;">Status</th>
+                <th style="padding:12px;">Action</th>
                 <th style="padding:12px;">Date</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($single_regs as $r): ?>
+                <?php
+                  $st = strtolower($r['payment_status'] ?? 'pending');
+                  $badgeClass = 'published';
+                  if ($st === 'failed') $badgeClass = 'closed';
+                  elseif ($st === 'pending' || $st === 'cancelled') $badgeClass = 'draft';
+                  $rCollege = $r['college_name'] ?? ($r['college'] ?? '');
+                  $rDate = $r['created_at'] ?? ($r['date'] ?? 'now');
+                ?>
                 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); font-size:14px;">
                   <td style="padding:12px; font-weight:600; color:#fff;"><?php echo htmlspecialchars($event_titles[$r['event_id']] ?? 'Unknown'); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['name']); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['roll_no']); ?></td>
-                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['college']); ?></td>
+                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($rCollege); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['email']); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['mobile_no']); ?></td>
                   <td style="padding:12px; color:var(--eh-text);">₹<?php echo number_format($r['paid_amount']); ?></td>
-                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-muted);"><?php echo htmlspecialchars($r['txn_id']); ?></td>
-                  <td style="padding:12px;"><span class="eh-card-status <?php echo ($r['payment_status'] === 'succeeded' || $r['payment_status'] === 'success' || (int)$r['paid_amount'] === 0) ? 'published' : 'draft'; ?>"><?php echo htmlspecialchars($r['payment_status'] ?: 'succeeded'); ?></span></td>
-                  <td style="padding:12px; color:var(--eh-muted);"><?php echo date('M j, Y', strtotime($r['date'])); ?></td>
+                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-accent);"><?php echo htmlspecialchars($r['txn_id']); ?></td>
+                  <td style="padding:12px;"><span class="eh-card-status <?php echo $badgeClass; ?>"><?php echo ucfirst($st); ?></span></td>
+                  <td style="padding:12px;">
+                    <?php if ($st === 'pending' && (int)$r['paid_amount'] > 0): ?>
+                      <button class="eh-btn eh-btn-primary eh-btn-sm" onclick="approvePayment('<?php echo htmlspecialchars($r['txn_id']); ?>', 'individual', this);" style="padding:4px 10px; font-size:12px;"><i class="fas fa-check"></i> Approve</button>
+                    <?php else: ?>
+                      <span style="color:#10b981; font-size:12px;"><i class="fas fa-check-circle"></i> Confirmed</span>
+                    <?php endif; ?>
+                  </td>
+                  <td style="padding:12px; color:var(--eh-muted);"><?php echo date('M j, Y', strtotime($rDate)); ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
         </div>
       <?php else: ?>
-        <div class="eh-empty" style="padding:40px;"><p>No individual registrations found.</p></div>
+        <div class="eh-empty" style="padding:30px;"><p>No individual registrations found.</p></div>
       <?php endif; ?>
 
+      <!-- Team Registrations Table -->
       <h3 style="margin-top:40px; color:#fff; font-size:18px;"><i class="fas fa-users"></i> Team Registrations</h3>
       <?php if (!empty($team_regs)): ?>
         <div style="overflow-x:auto;">
@@ -287,35 +358,52 @@ include('header.php');
                 <th style="padding:12px;">Event</th>
                 <th style="padding:12px;">Team Name</th>
                 <th style="padding:12px;">College</th>
-                <th style="padding:12px;">Leader</th>
+                <th style="padding:12px;">Members</th>
                 <th style="padding:12px;">Emails</th>
                 <th style="padding:12px;">Mobile</th>
                 <th style="padding:12px;">Amount</th>
-                <th style="padding:12px;">Txn ID</th>
+                <th style="padding:12px;">UTR / Txn ID</th>
                 <th style="padding:12px;">Status</th>
+                <th style="padding:12px;">Action</th>
                 <th style="padding:12px;">Date</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($team_regs as $r): ?>
+                <?php
+                  $st = strtolower($r['payment_status'] ?? 'pending');
+                  $badgeClass = 'published';
+                  if ($st === 'failed') $badgeClass = 'closed';
+                  elseif ($st === 'pending' || $st === 'cancelled') $badgeClass = 'draft';
+                  $rCollege = $r['college_name'] ?? ($r['college'] ?? '');
+                  $rDate = $r['created_at'] ?? ($r['date'] ?? 'now');
+                  $rMembers = $r['student_name'] ?? ($r['name'] ?? '');
+                ?>
                 <tr style="border-bottom:1px solid rgba(255,255,255,0.05); font-size:14px;">
                   <td style="padding:12px; font-weight:600; color:#fff;"><?php echo htmlspecialchars($event_titles[$r['event_id']] ?? 'Unknown'); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['team_name']); ?></td>
-                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['college']); ?></td>
-                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['name']); ?></td>
+                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($rCollege); ?></td>
+                  <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($rMembers); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['emails']); ?></td>
                   <td style="padding:12px; color:var(--eh-text);"><?php echo htmlspecialchars($r['mobile_no']); ?></td>
                   <td style="padding:12px; color:var(--eh-text);">₹<?php echo number_format($r['paid_amount']); ?></td>
-                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-muted);"><?php echo htmlspecialchars($r['txn_id']); ?></td>
-                  <td style="padding:12px;"><span class="eh-card-status <?php echo ($r['payment_status'] === 'succeeded' || $r['payment_status'] === 'success' || (int)$r['paid_amount'] === 0) ? 'published' : 'draft'; ?>"><?php echo htmlspecialchars($r['payment_status'] ?: 'succeeded'); ?></span></td>
-                  <td style="padding:12px; color:var(--eh-muted);"><?php echo date('M j, Y', strtotime($r['date'])); ?></td>
+                  <td style="padding:12px; font-family:monospace; font-size:12px; color:var(--eh-accent);"><?php echo htmlspecialchars($r['txn_id']); ?></td>
+                  <td style="padding:12px;"><span class="eh-card-status <?php echo $badgeClass; ?>"><?php echo ucfirst($st); ?></span></td>
+                  <td style="padding:12px;">
+                    <?php if ($st === 'pending' && (int)$r['paid_amount'] > 0): ?>
+                      <button class="eh-btn eh-btn-primary eh-btn-sm" onclick="approvePayment('<?php echo htmlspecialchars($r['txn_id']); ?>', 'team', this);" style="padding:4px 10px; font-size:12px;"><i class="fas fa-check"></i> Approve</button>
+                    <?php else: ?>
+                      <span style="color:#10b981; font-size:12px;"><i class="fas fa-check-circle"></i> Confirmed</span>
+                    <?php endif; ?>
+                  </td>
+                  <td style="padding:12px; color:var(--eh-muted);"><?php echo date('M j, Y', strtotime($rDate)); ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
           </table>
         </div>
       <?php else: ?>
-        <div class="eh-empty" style="padding:40px;"><p>No team registrations found.</p></div>
+        <div class="eh-empty" style="padding:30px;"><p>No team registrations found.</p></div>
       <?php endif; ?>
     </div>
 
@@ -374,6 +462,34 @@ window.addEventListener('load', function(){
       options:{ plugins:{ legend:{ display:false } }, scales:{ x:{ ticks:{ color:'#9ca3af' } }, y:{ ticks:{ color:'#9ca3af' }, beginAtZero:true } } } }
   ]);
 });
+
+function approvePayment(txnId, type, btn) {
+  if (!confirm('Are you sure you want to verify and confirm this payment for UTR: ' + txnId + '?')) return;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Approving...';
+  var fd = new FormData();
+  fd.append('txn_id', txnId);
+  fd.append('type', type);
+  fd.append('csrf_token', '<?php echo $_SESSION['csrf_token'] ?? ''; ?>');
+  fetch('verify_registration_admin.php', { method: 'POST', body: fd })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.success) {
+        btn.parentElement.innerHTML = '<span style="color:#10b981; font-size:12px;"><i class="fas fa-check-circle"></i> Confirmed</span>';
+        alert('Payment verified and registration confirmed!');
+        location.reload();
+      } else {
+        alert(data.error || 'Failed to verify payment.');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check"></i> Approve';
+      }
+    })
+    .catch(function(e) {
+      alert('Network error: ' + e.message);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-check"></i> Approve';
+    });
+}
 </script>
 <?php include('footer.php'); ?>
 <?php $conn->close(); ?>
