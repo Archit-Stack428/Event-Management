@@ -6,9 +6,18 @@
    ============================================================= */
 require_once __DIR__ . '/config.php';
 
-// Create connection
+// Create connection with SSL support for Cloud databases like TiDB
 $port = defined('DB_PORT') ? (int)DB_PORT : (getenv('DB_PORT') ? (int)getenv('DB_PORT') : 3306);
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, $port);
+$conn = mysqli_init();
+
+if ((defined('MYSQL_SSL') && MYSQL_SSL) || strpos(DB_HOST, 'tidbcloud.com') !== false) {
+    // Cloud SSL connection (TiDB Cloud / Aiven)
+    $conn->ssl_set(NULL, NULL, NULL, NULL, NULL);
+    $conn->real_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, $port, NULL, MYSQLI_CLIENT_SSL);
+} else {
+    // Standard connection
+    $conn->real_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, $port);
+}
 
 // Check connection
 if ($conn->connect_error) {
