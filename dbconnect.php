@@ -7,7 +7,8 @@
 require_once __DIR__ . '/config.php';
 
 // Create connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$port = defined('DB_PORT') ? (int)DB_PORT : (getenv('DB_PORT') ? (int)getenv('DB_PORT') : 3306);
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, $port);
 
 // Check connection
 if ($conn->connect_error) {

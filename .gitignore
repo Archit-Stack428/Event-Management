@@ -1,8 +1,7 @@
 # Secrets / environment
 .env
 .env.*
-!.env.example
-config.php
+config.local.php
 *.bak
 
 # VS Code
