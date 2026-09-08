@@ -84,6 +84,16 @@ function handleCredentialResponse(response) {
     <div style="max-width:440px; margin:0 auto;" class="eh-animate-fade-in stagger-card">
       <div class="eh-panel" style="padding:40px; border-radius:20px; backdrop-filter: blur(12px); background: rgba(9, 9, 11, 0.65); border: 1px solid rgba(255,255,255,0.08);">
         
+        <!-- Mode Switcher Tabs -->
+        <div style="display:flex; background:rgba(255,255,255,0.06); padding:4px; border-radius:12px; margin-bottom:28px; border:1px solid rgba(255,255,255,0.08);">
+          <a href="login.php" style="flex:1; text-align:center; padding:10px 16px; border-radius:8px; font-size:14px; font-weight:600; background:linear-gradient(135deg, #7C3AED, #3B82F6); color:#fff; text-decoration:none; box-shadow:0 2px 10px rgba(124,58,237,0.35); display:flex; align-items:center; justify-content:center; gap:8px;">
+            <i class="fas fa-sign-in-alt"></i> Log In
+          </a>
+          <a href="signup.php" style="flex:1; text-align:center; padding:10px 16px; border-radius:8px; font-size:14px; font-weight:500; color:var(--eh-muted); text-decoration:none; transition:all 0.2s; display:flex; align-items:center; justify-content:center; gap:8px;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--eh-muted)'">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </a>
+        </div>
+
         <div class="eh-animate-fade-in stagger-1">
           <h2 style="font-size:28px; font-weight:700; color:#fff; text-align:center; margin-bottom:6px;">Welcome Back</h2>
           <p style="text-align:center; color:var(--eh-muted); margin-bottom:32px;">Log in to manage your EventHub Pro events</p>
@@ -123,7 +133,12 @@ function handleCredentialResponse(response) {
             <span style="padding:0 10px; color:var(--eh-muted); font-size:12px; text-transform:uppercase;">or</span>
             <hr style="flex:1; border:none; border-top:1px solid rgba(255,255,255,0.1);">
           </div>
+
+          <a href="signup.php" class="eh-btn eh-btn-outline" style="width:100%; justify-content:center; padding:12px; font-size:14px; border-color:rgba(255,255,255,0.15); color:#fff; text-decoration:none; display:flex; align-items:center; gap:8px; border-radius:10px; background:rgba(255,255,255,0.03); transition:all 0.2s;" onmouseover="this.style.background='rgba(124,58,237,0.15)'; this.style.borderColor='var(--eh-accent)';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.15)';">
+            <i class="fas fa-user-plus"></i> Create New Account (Sign Up)
+          </a>
           
+          <?php if (defined('GOOGLE_CLIENT_ID') && strpos(GOOGLE_CLIENT_ID, 'PLACEHOLDER') === false): ?>
           <div id="g_id_onload"
                data-client_id="<?php echo GOOGLE_CLIENT_ID; ?>"
                data-context="signin"
@@ -140,10 +155,11 @@ function handleCredentialResponse(response) {
                data-logo_alignment="left"
                style="width:100%;">
           </div>
+          <?php endif; ?>
         </div>
 
         <div class="eh-animate-fade-in stagger-5" style="text-align:center; margin-top:24px; font-size:14px; color:var(--eh-muted);">
-          Don't have an account yet? <a href="signup.php" style="color:var(--eh-accent); font-weight:600;">Sign Up</a>
+          Don't have an account yet? <a href="signup.php" style="color:var(--eh-accent); font-weight:600; text-decoration:underline;">Sign Up Here</a>
         </div>
       </div>
     </div>
