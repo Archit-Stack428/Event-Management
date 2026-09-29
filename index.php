@@ -681,7 +681,87 @@ function getChatbotResponse(rawQuery) {
     }
   }
 
-  // 2. PLATFORM OVERVIEW / HOW TO USE / GUIDE ME
+  // 2. CONVERSATIONAL SMALL TALK & FRIENDLY CHAT (Fixes "how are you" issue)
+  if (
+    q.includes('how are you') || 
+    q.includes('how r u') || 
+    q.includes('how are u') || 
+    q.includes('how do you do') || 
+    q.includes('how is it going') || 
+    q.includes("how's it going") || 
+    q.includes('kaise ho') || 
+    q.includes('kya haal') || 
+    q.includes('sab theek') || 
+    q.includes('how you doing') ||
+    q.includes('kaise hain') ||
+    q.includes('kya chal raha')
+  ) {
+    return "I'm doing wonderful, thank you so much for asking! 😊✨\n\nI'm always excited to help students and organizers explore campus fests, hackathons, and concerts. How are you doing today? Are you looking to join an event or host your own?";
+  }
+
+  if (
+    q.includes('who are you') || 
+    q.includes('what is your name') || 
+    q.includes('whats your name') || 
+    q.includes("what's your name") || 
+    q.includes('tum kaun ho') || 
+    q.includes('aap kaun ho') || 
+    q.includes('naam kya hai') || 
+    q.includes('are you ai') || 
+    q.includes('are you human') || 
+    q.includes('are you a bot') ||
+    q.includes('tell me about yourself')
+  ) {
+    return "🤖 **I am your EventHub AI Assistant!**\n\nThink of me as your 24/7 personal campus event concierge. I can help you:\n• Discover trending college hackathons, sports meets, and fests.\n• Walk you through the registration and ticket generation process.\n• Explain how instant UPI payments and QR check-ins work.\n• Guide organizers on how to publish and manage events.\n\nWhat would you like to explore today?";
+  }
+
+  if (
+    q.includes('what can you do') || 
+    q.includes('kya kar sakte ho') || 
+    q.includes('what do you do') || 
+    q.includes('how can you help') || 
+    q.includes('your features')
+  ) {
+    return "💡 **Here is what I can do for you:**\n\n" +
+           "• 🔍 **Find Events**: Ask me about Hackathons, Sports tournaments, or Music fests.\n" +
+           "• 📝 **Registration**: Step-by-step guidance on how to participate and fill forms.\n" +
+           "• 💳 **UPI & Payments**: Information about GPay, PhonePe, Paytm QR checkouts.\n" +
+           "• 🎟️ **QR Tickets**: How digital gate passes work for venue entry.\n" +
+           "• 🚀 **Host Events**: Instructions for organizers on publishing events and viewing attendees.\n\n" +
+           "Feel free to ask me anything in English or Hindi!";
+  }
+
+  if (
+    q === 'i am fine' || 
+    q === 'i am good' || 
+    q === "i'm good" || 
+    q === "i'm fine" || 
+    q === 'good' || 
+    q === 'fine' || 
+    q.includes('theek hu') || 
+    q.includes('badhiya') || 
+    q.includes('all good') || 
+    q.includes('mast') || 
+    q.includes('doing well')
+  ) {
+    return "Awesome! Glad to hear that! 🌟 So, what brings you to EventHub Pro today? Want to check out upcoming hackathons, college fests, or sports meets?";
+  }
+
+  if (
+    q === 'ok' || 
+    q === 'okay' || 
+    q === 'k' || 
+    q === 'kk' || 
+    q.includes('theek hai') || 
+    q.includes('achha') || 
+    q.includes('got it') || 
+    q.includes('samajh gaya') || 
+    q.includes('understood')
+  ) {
+    return "Great! 👍 If you have any other questions about events, payments, or registrations, just type them here. Happy to help anytime!";
+  }
+
+  // 3. PLATFORM OVERVIEW / HOW TO USE / GUIDE ME
   if (
     q.includes('explain') || 
     q.includes('how can i use') || 
@@ -706,7 +786,7 @@ function getChatbotResponse(rawQuery) {
            "5️⃣ **Host Your Own Event**: If you are an organizer or college society, log in and click 'Create Event' to publish your fest and track attendees in real time!";
   }
 
-  // 3. REGISTRATION PROCESS / HOW TO REGISTER
+  // 4. REGISTRATION PROCESS / HOW TO REGISTER
   if (
     q.includes('how to register') || 
     q.includes('register into') || 
@@ -728,7 +808,7 @@ function getChatbotResponse(rawQuery) {
            "6. Your verified digital QR ticket will be displayed instantly!";
   }
 
-  // 4. UPI PAYMENTS & TRANSACTIONS
+  // 5. UPI PAYMENTS & TRANSACTIONS
   if (
     q.includes('payment') || 
     q.includes('upi') || 
@@ -751,7 +831,7 @@ function getChatbotResponse(rawQuery) {
            "• Payments are fast and 100% secure. No banking passwords or debit card credentials are ever requested or stored on our servers!";
   }
 
-  // 5. QR CODE TICKETS & GATE ENTRY
+  // 6. QR CODE TICKETS & GATE ENTRY
   if (
     q.includes('ticket') || 
     q.includes('qr') || 
@@ -767,7 +847,7 @@ function getChatbotResponse(rawQuery) {
            "• When you arrive at the venue, the event coordinators will scan your QR code with the EventHub Pro camera scanner for rapid, paperless gate entry!";
   }
 
-  // 6. CREATING / HOSTING AN EVENT (ORGANIZERS)
+  // 7. CREATING / HOSTING AN EVENT (ORGANIZERS)
   if (
     q.includes('create event') || 
     q.includes('host event') || 
@@ -788,7 +868,7 @@ function getChatbotResponse(rawQuery) {
            "4. Click Publish and your event is live for thousands of attendees!";
   }
 
-  // 7. ADMIN PANEL & DASHBOARD
+  // 8. ADMIN PANEL & DASHBOARD
   if (
     q.includes('admin') || 
     q.includes('dashboard') || 
@@ -807,7 +887,57 @@ function getChatbotResponse(rawQuery) {
            "  - Create new organizer accounts securely.";
   }
 
-  // 8. LOGIN / SIGNUP / ACCOUNT RECOVERY
+  // 9. IS IT FREE / FEES & CHARGES
+  if (
+    q.includes('is it free') || 
+    q.includes('is this free') || 
+    q.includes('free hai kya') || 
+    q.includes('free h kya') || 
+    q.includes('kya ye free h')
+  ) {
+    return "🎉 **EventHub Pro is free to explore!**\n\n• Many workshops, seminars, and cultural fests are **100% Free** to register.\n• For competitive events with cash prizes (like hackathons or sports meets), entry fees are set by the organizers and paid directly via UPI.\n• Organizers also get a **Free Tier** to host their first 50 participants with zero platform charges!";
+  }
+
+  // 10. CERTIFICATES & PRIZES
+  if (
+    q.includes('certificate') || 
+    q.includes('certi') || 
+    q.includes('trophy') || 
+    q.includes('medal')
+  ) {
+    return "📜 **Certificates & Awards:**\n\nYes! Most hackathons, workshops, and competitions hosted on EventHub Pro provide official **Participation Certificates** and winner trophies / cash prizes.\n\nYou can review specific certificate eligibility and prize pools directly under the **'Rules & Prizes'** tab on each event's details page!";
+  }
+
+  // 11. CANCELLATION & REFUNDS
+  if (
+    q.includes('cancel') || 
+    q.includes('refund') || 
+    q.includes('money back')
+  ) {
+    return "🔄 **Cancellations & Refunds:**\n\nRefund policies are determined by each event's organizer. If you are unable to attend:\n• You can reach out to the event coordinator listed on the event page.\n• Or email our support team at **hello@eventhubpro.com** with your Registration ID, and we will assist you!";
+  }
+
+  // 12. ALL EVENTS / CURRENT LIST OF EVENTS
+  if (
+    q.includes('all events') || 
+    q.includes('upcoming events') || 
+    q.includes('events dikhao') || 
+    q.includes('list of events') || 
+    q.includes('kya event hai') || 
+    q.includes('what events') || 
+    q.includes('available events') || 
+    q.includes('kon se event') || 
+    q.includes('kaun se event')
+  ) {
+    return "🎪 **Current Trending Events on EventHub Pro:**\n\n" +
+           "1. 💻 **MMDU National Hackathon 2026**: 24-hr team coding challenge with ₹50,000 cash prizes!\n" +
+           "2. 🎵 **Symphony Music Fest 2026**: High-voltage battle of the bands and open-mic singing (Free entry)!\n" +
+           "3. 🏆 **Spardha Annual Sports Meet**: Inter-college cricket, football, basketball & athletics.\n" +
+           "4. 🎨 **Fine Arts & Design Bootcamp**: Creative showcase & workshop.\n\n" +
+           "👉 Click **'Events'** in the top navbar to view dates, venue details, and register now!";
+  }
+
+  // 13. LOGIN / SIGNUP / ACCOUNT RECOVERY
   if (
     q.includes('login') || 
     q.includes('sign in') || 
@@ -825,7 +955,7 @@ function getChatbotResponse(rawQuery) {
            "• EventHub Pro features a 30-day persistent session, so you stay logged in without repeated prompts!";
   }
 
-  // 9. EVENT CATEGORIES / SPECIFIC POPULAR EVENTS
+  // 14. EVENT CATEGORIES / SPECIFIC POPULAR EVENTS
   if (
     q.includes('hackathon') || 
     q.includes('coding') || 
@@ -862,7 +992,7 @@ function getChatbotResponse(rawQuery) {
            "• Check the **Sports** category on the Events page for schedule, fixtures, and participation fees.";
   }
 
-  // 10. PRICING & SUBSCRIPTION PLANS
+  // 15. PRICING & SUBSCRIPTION PLANS
   if (
     q.includes('pricing') || 
     q.includes('plans') || 
@@ -876,7 +1006,7 @@ function getChatbotResponse(rawQuery) {
            "• **Enterprise**: Custom volume and university-wide management with dedicated SLA.";
   }
 
-  // 11. CONTACT & SUPPORT
+  // 16. CONTACT & SUPPORT
   if (
     q.includes('contact') || 
     q.includes('support') || 
@@ -893,21 +1023,27 @@ function getChatbotResponse(rawQuery) {
            "Our team is happy to help with any event inquiries or registration questions.";
   }
 
-  // 12. GREETINGS & POLITE PHRASES (Strict whole-word matching)
-  if (/\b(hello|hi|hey|heya|namaste|greetings|good morning|good afternoon|good evening)\b/i.test(q)) {
+  // 17. GREETINGS & POLITE PHRASES (Strict whole-word matching)
+  if (/\b(hello|hi|hey|heya|namaste|greetings|good morning|good afternoon|good evening|shubh prabhat)\b/i.test(q)) {
     return "👋 **Hello! I am your EventHub Pro AI Assistant.**\n\nHow can I help you today? You can ask me:\n• 'Explain how to use this website'\n• 'How to register for an event'\n• 'How to pay via UPI & get QR ticket'\n• 'How to create and host an event'\n• 'Show upcoming Hackathons'";
   }
 
-  if (/\b(thanks|thank you|dhanyawad|shukriya|great|awesome|perfect|good)\b/i.test(q)) {
+  if (/\b(thanks|thank you|dhanyawad|shukriya|great|awesome|perfect|super)\b/i.test(q)) {
     return "You're very welcome! 😊 Feel free to ask anytime if you need help finding events or managing tickets on EventHub Pro. Enjoy your experience!";
   }
 
-  if (/\b(bye|goodbye|see you|tata)\b/i.test(q)) {
+  if (/\b(bye|goodbye|see you|tata|alvida)\b/i.test(q)) {
     return "Goodbye! Have a fantastic day ahead, and we hope to see you at the events! 🎉";
   }
 
-  // 13. INTELLIGENT FALLBACK
-  return "I'm here to assist you with everything on EventHub Pro! 🌟\n\nCould you please specify your question? For example, you can ask:\n• **'Explain how can I use this website'**\n• **'How do I register for an event?'**\n• **'How to pay via UPI and get my QR ticket?'**\n• **'How can I create or host an event?'**\n• **'Show me upcoming Hackathons or Sports meets'**";
+  // 18. CONVERSATIONAL FALLBACK (Friendly & Engaging)
+  return "I'd love to help you with that! 😊 Could you tell me a little more, or choose from one of these common topics:\n\n" +
+         "• 💡 **'Explain how to use this website'** — complete walkthrough\n" +
+         "• 📝 **'How to register for an event'** — single/team entry process\n" +
+         "• 💳 **'UPI payments & QR tickets'** — checkout and entry gate pass\n" +
+         "• 🚀 **'How to create an event'** — organizer guide\n" +
+         "• 🎪 **'What events are available'** — view current fests\n\n" +
+         "You can also tap any of the quick suggestion buttons above!";
 }
 </script>
 
