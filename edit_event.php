@@ -42,18 +42,9 @@ if (isset($_POST['submit'])) {
     }
 
     // Verify event ownership before doing anything
-    $stmt = $conn->prepare("SELECT organizer_name FROM create_event WHERE Event_ID = ?");
-    $stmt->bind_param('i', $id);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    if ($res->num_rows === 0) {
-        $stmt->close();
-        die('Event not found.');
-    }
-    $event = $res->fetch_assoc();
-    $stmt->close();
-
-    if ($event['organizer_name'] !== $organizer_name) {
+    require_once __DIR__ . '/auth_helper.php';
+    $event = verify_event_ownership($id, $_SESSION['username'], $conn);
+    if (!$event) {
         die('Unauthorized access. You do not own this event.');
     }
 

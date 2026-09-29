@@ -21,35 +21,10 @@ if ($id <= 0 || !hash_equals($_SESSION['csrf_token'] ?? '', $token)) {
     die('CSRF token validation failed or invalid parameters.');
 }
 
-// Get organizer full name safely
-$username = $_SESSION['username'];
-$organizer_name = '';
-$stmt = $conn->prepare("SELECT full_name FROM sign_up WHERE username = ?");
-$stmt->bind_param('s', $username);
-$stmt->execute();
-$res = $stmt->get_result();
-if ($row = $res->fetch_assoc()) {
-    $organizer_name = $row['full_name'];
-}
-$stmt->close();
-
-if ($organizer_name === '') {
-    die('Unauthorized access. Invalid account.');
-}
-
-// Verify event ownership
-$stmt = $conn->prepare("SELECT organizer_name, startdate FROM create_event WHERE Event_ID = ?");
-$stmt->bind_param('i', $id);
-$stmt->execute();
-$res = $stmt->get_result();
-if ($res->num_rows === 0) {
-    $stmt->close();
-    die('Event not found.');
-}
-$event = $res->fetch_assoc();
-$stmt->close();
-
-if ($event['organizer_name'] !== $organizer_name) {
+// Verify event ownership with case and whitespace normalization
+require_once __DIR__ . '/auth_helper.php';
+$event = verify_event_ownership($id, $_SESSION['username'], $conn);
+if (!$event) {
     die('Unauthorized access. You do not own this event.');
 }
 

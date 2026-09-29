@@ -17,39 +17,15 @@ if (!isset($_SESSION['username']) || trim($_SESSION['username']) === '') {
     exit;
 }
 
-$username = $_SESSION['username'];
-$organizer_name = '';
-$stmt = $conn->prepare("SELECT full_name FROM sign_up WHERE username = ?");
-$stmt->bind_param('s', $username);
-$stmt->execute();
-$res = $stmt->get_result();
-if ($row = $res->fetch_assoc()) {
-    $organizer_name = $row['full_name'];
-}
-$stmt->close();
-
-if ($organizer_name === '') {
-    die('Unauthorized access. Invalid account.');
-}
-
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($id <= 0) {
     die('Invalid Event ID.');
 }
 
-// Fetch existing event data and verify ownership
-$stmt = $conn->prepare("SELECT * FROM create_event WHERE Event_ID = ?");
-$stmt->bind_param('i', $id);
-$stmt->execute();
-$res = $stmt->get_result();
-if ($res->num_rows === 0) {
-    $stmt->close();
-    die('Event not found.');
-}
-$ev = $res->fetch_assoc();
-$stmt->close();
-
-if ($ev['organizer_name'] !== $organizer_name) {
+// Fetch existing event data and verify ownership with case and whitespace normalization
+require_once __DIR__ . '/auth_helper.php';
+$ev = verify_event_ownership($id, $_SESSION['username'], $conn);
+if (!$ev) {
     die('Unauthorized access. You do not own this event.');
 }
 

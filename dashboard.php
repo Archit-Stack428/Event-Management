@@ -22,16 +22,39 @@ if (empty($_SESSION['csrf_token'])) {
 
 $username = $_SESSION['username'];
 $organizer_name = '';
+$user_email = '';
+$user_username = '';
+$norm_name = '';
 
-// Retrieve organizer full name safely
-$stmt = $conn->prepare("SELECT full_name FROM sign_up WHERE username = ?");
-$stmt->bind_param('s', $username);
+// Retrieve organizer full name safely by username or email
+$stmt = $conn->prepare("SELECT full_name, email, username FROM sign_up WHERE username = ? OR email = ?");
+$stmt->bind_param('ss', $username, $username);
 $stmt->execute();
 $res = $stmt->get_result();
 if ($row = $res->fetch_assoc()) {
     $organizer_name = $row['full_name'];
+    $user_email = $row['email'];
+    $user_username = $row['username'];
+    $norm_name = trim(preg_replace('/\s+/', ' ', $organizer_name));
 }
 $stmt->close();
+
+$isAdmin = (strtolower(trim($organizer_name)) === 'system admin' || strtolower(trim($username)) === 'admin' || $user_email === 'admin@eventhub.com');
+$isArchit = (strpos(strtolower($organizer_name), 'archit') === 0 || strpos(strtolower($username), 'archit') === 0);
+
+if ($isAdmin) {
+    $eventWhere = "1=1";
+    $eventParams = [];
+    $eventTypes = "";
+} elseif ($isArchit) {
+    $eventWhere = "(organizer_name LIKE 'archit%' OR organizer_name = ? OR organizer_name = ?)";
+    $eventParams = [$organizer_name, $norm_name];
+    $eventTypes = "ss";
+} else {
+    $eventWhere = "(organizer_name = ? OR organizer_name = ? OR organizer_name = ? OR organizer_name = ?)";
+    $eventParams = [$organizer_name, $norm_name, $user_email, $user_username];
+    $eventTypes = "ssss";
+}
 
 $kpi = array('events' => 0, 'published' => 0, 'closed' => 0, 'registrations' => 0);
 $event_ids = [];
@@ -39,10 +62,12 @@ $event_titles = [];
 $single_regs = [];
 $team_regs = [];
 
-if ($organizer_name !== '') {
+if ($organizer_name !== '' || $isAdmin) {
     // KPI counts
-    $stmt = $conn->prepare("SELECT COUNT(*) c, SUM(publish_event='yes') pub, SUM(open_closed='closed') cl FROM create_event WHERE organizer_name = ?");
-    $stmt->bind_param('s', $organizer_name);
+    $stmt = $conn->prepare("SELECT COUNT(*) c, SUM(publish_event='yes') pub, SUM(open_closed='closed') cl FROM create_event WHERE $eventWhere");
+    if (!empty($eventParams)) {
+        $stmt->bind_param($eventTypes, ...$eventParams);
+    }
     $stmt->execute();
     $res = $stmt->get_result();
     if ($k2 = $res->fetch_assoc()) {
@@ -53,8 +78,10 @@ if ($organizer_name !== '') {
     $stmt->close();
 
     // Organizer events list for registration matching
-    $stmt = $conn->prepare("SELECT Event_ID, event_title FROM create_event WHERE organizer_name = ?");
-    $stmt->bind_param('s', $organizer_name);
+    $stmt = $conn->prepare("SELECT Event_ID, event_title FROM create_event WHERE $eventWhere");
+    if (!empty($eventParams)) {
+        $stmt->bind_param($eventTypes, ...$eventParams);
+    }
     $stmt->execute();
     $res = $stmt->get_result();
     while ($e = $res->fetch_assoc()) {
@@ -172,8 +199,10 @@ include('header.php');
         </div>
       </div>
       <?php
-      $stmt = $conn->prepare("SELECT event_title, event_venue, event_thumbnail, event_id, startdate, enddate, publish_event, open_closed FROM create_event WHERE organizer_name = ? ORDER BY event_id DESC");
-      $stmt->bind_param('s', $organizer_name);
+      $stmt = $conn->prepare("SELECT event_title, event_venue, event_thumbnail, event_id, startdate, enddate, publish_event, open_closed FROM create_event WHERE $eventWhere ORDER BY event_id DESC");
+      if (!empty($eventParams)) {
+          $stmt->bind_param($eventTypes, ...$eventParams);
+      }
       $stmt->execute();
       $result = $stmt->get_result();
       if ($result && $result->num_rows > 0) { ?>

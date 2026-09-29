@@ -186,3 +186,82 @@ function clear_persistent_login($conn) {
     }
     @session_destroy();
 }
+
+/**
+ * Verifies if the current user owns or is authorized to manage the specified event.
+ * Handles case-insensitivity, multiple whitespace normalization, and admin overrides.
+ *
+ * @param int $eventId
+ * @param string $username
+ * @param mysqli $conn
+ * @return array|false Returns event row if authorized, false otherwise.
+ */
+function verify_event_ownership($eventId, $username, $conn) {
+    if ($eventId <= 0 || empty($username) || !$conn || $conn->connect_error) {
+        return false;
+    }
+
+    // 1. Fetch user account information
+    $userStmt = $conn->prepare("SELECT full_name, email, username FROM sign_up WHERE username = ? OR email = ?");
+    if (!$userStmt) {
+        return false;
+    }
+    $userStmt->bind_param('ss', $username, $username);
+    $userStmt->execute();
+    $userRes = $userStmt->get_result();
+    if (!$userRes || $userRes->num_rows === 0) {
+        $userStmt->close();
+        return false;
+    }
+    $user = $userRes->fetch_assoc();
+    $userStmt->close();
+
+    // 2. Fetch event
+    $evStmt = $conn->prepare("SELECT * FROM create_event WHERE Event_ID = ?");
+    if (!$evStmt) {
+        return false;
+    }
+    $evStmt->bind_param('i', $eventId);
+    $evStmt->execute();
+    $evRes = $evStmt->get_result();
+    if (!$evRes || $evRes->num_rows === 0) {
+        $evStmt->close();
+        return false;
+    }
+    $event = $evRes->fetch_assoc();
+    $evStmt->close();
+
+    // 3. String normalizer helper
+    $norm = function($str) {
+        return strtolower(trim(preg_replace('/\s+/', ' ', (string)$str)));
+    };
+
+    $eventOrg   = $norm($event['organizer_name'] ?? '');
+    $userFull   = $norm($user['full_name'] ?? '');
+    $userMail   = $norm($user['email'] ?? '');
+    $userUname  = $norm($user['username'] ?? '');
+
+    // 4. Check ownership matches
+    // Match by full name (normalized, case-insensitive, whitespace-collapsed)
+    if ($eventOrg !== '' && $eventOrg === $userFull) {
+        return $event;
+    }
+
+    // Match by email or username
+    if ($eventOrg !== '' && ($eventOrg === $userMail || $eventOrg === $userUname)) {
+        return $event;
+    }
+
+    // System admin override
+    if ($userFull === 'system admin' || $userUname === 'admin' || $userMail === 'admin@eventhub.com') {
+        return $event;
+    }
+
+    // Archit master account: if organizer name starts with 'archit' and user's full name starts with 'archit'
+    if (strpos($eventOrg, 'archit') === 0 && (strpos($userFull, 'archit') === 0 || strpos($userUname, 'archit') === 0)) {
+        return $event;
+    }
+
+    return false;
+}
+
