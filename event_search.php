@@ -129,7 +129,10 @@ function renderCard($ev) {
     if (!empty($ev['startdate'])) {
         $dateStr = date('M j, Y', strtotime($ev['startdate']));
     }
-    $timeStr = !empty($ev['time']) ? date('g:i A', strtotime($ev['time'])) : '';
+    $timeStr = '';
+    if (!empty($ev['time'])) {
+        $timeStr = preg_match('/\b(AM|PM)\b/i', $ev['time']) ? htmlspecialchars($ev['time']) : (strtotime($ev['time']) ? date('g:i A', strtotime($ev['time'])) : htmlspecialchars($ev['time']));
+    }
 
     $priceLabel = $price > 0 ? '₹' . number_format($price) : 'Free';
     $statusTxt  = ($ev['open_closed'] === 'open') ? 'Open' : 'Closed';

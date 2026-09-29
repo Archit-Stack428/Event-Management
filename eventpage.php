@@ -157,7 +157,10 @@ if (!empty($startdate)) {
         $dateLabel .= ' — ' . date('M j, Y', strtotime($enddate));
     }
 }
-$timeLabel = !empty($time) ? date('g:i A', strtotime($time)) : '';
+$timeLabel = '';
+if (!empty($time)) {
+    $timeLabel = preg_match('/\b(AM|PM)\b/i', $time) ? htmlspecialchars($time) : (strtotime($time) ? date('g:i A', strtotime($time)) : htmlspecialchars($time));
+}
 
 // Share URL
 $shareUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
