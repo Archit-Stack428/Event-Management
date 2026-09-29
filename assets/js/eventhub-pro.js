@@ -13,12 +13,6 @@
   }
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isMobile = window.innerWidth < 720;
-  if (window.Lenis && !reduceMotion) {
-    var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
-    window.lenis = lenis;
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  }
   var nav = document.querySelector('.eh-nav');
   if (nav) {
     window.addEventListener('scroll', function () {
@@ -104,8 +98,14 @@
   });
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
-      var target = document.querySelector(this.getAttribute('href'));
-      if (target && window.lenis) { e.preventDefault(); lenis.scrollTo(target); }
+      var href = this.getAttribute('href');
+      if (href && href.length > 1) {
+        var target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     });
   });
   /* MARKETPLACE */
@@ -249,9 +249,8 @@
         if (lightboxCaption) { lightboxCaption.textContent = cap ? cap.textContent : ''; }
         lightbox.classList.add('open');
         document.body.style.overflow = 'hidden';
-        if (window.lenis) window.lenis.stop();
       }
-      function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; if (window.lenis) window.lenis.start(); }
+      function closeLightbox() { lightbox.classList.remove('open'); document.body.style.overflow = ''; }
       function nav(d) { openLightbox(currentIndex + d); }
       if (closeBtn) { closeBtn.addEventListener('click', closeLightbox); }
       if (prevBtn) { prevBtn.addEventListener('click', function () { nav(-1); }); }

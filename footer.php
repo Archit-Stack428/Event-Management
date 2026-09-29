@@ -65,9 +65,6 @@
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
-<!-- Lenis -->
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-
 <!-- tsParticles -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
 
@@ -75,7 +72,7 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
 <!-- EVENTHUB PRO scripts -->
-<script src="assets/js/eventhub-pro.js" defer></script>
+<script src="assets/js/eventhub-pro.js?v=2.2" defer></script>
 
 <?php if (!empty($load_dashboard_assets)): ?>
 <!-- Chart.js (dashboard analytics only) -->

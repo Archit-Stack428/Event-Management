@@ -21,13 +21,18 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 body {
   margin: 0;
   background: var(--eh-bg);
   color: var(--eh-text);
   font-family: var(--eh-body);
   overflow-x: hidden;
+  overflow-y: auto;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

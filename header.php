@@ -42,9 +42,9 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <!-- EVENTHUB PRO styles -->
-<link rel="stylesheet" href="assets/css/eventhub-pro.css?v=2.1">
+<link rel="stylesheet" href="assets/css/eventhub-pro.css?v=2.2">
 <?php if (!empty($load_dashboard_assets)): ?>
-<link rel="stylesheet" href="assets/css/dashboard-pro.css?v=2.1">
+<link rel="stylesheet" href="assets/css/dashboard-pro.css?v=2.2">
 <?php endif; ?>
 <style>
   .eh-nav .container-max { max-width: 1480px !important; padding: 0 36px !important; width: 100% !important; }
