@@ -19,82 +19,62 @@ if ($check_feat) {
 if ($feat_count < 3) {
     $seeds = [
         [
-            'organizer_name' => 'System Admin',
-            'event_title' => 'MMDU National Hackathon 2026',
-            'event_desc' => 'Join the ultimate 24-hour coding challenge at MMDU. Build innovative solutions for real-world problems and win grand cash prizes! Mentorship from top industry experts will be provided throughout the event.',
+            'organizer_name' => 'VSICS BCA Final Year',
+            'event_title' => 'SPECTRUM 2026 — The Innovation Hackathon',
+            'event_desc' => 'The Innovation Hackathon organized by BCA (Final Year), Dr. Virendra Swaroop Institute of Computer Studies (ESTD. 1998, 801, W-1 Block, Juhi, Saket Nagar, Kanpur). Put your technical ingenuity to the test, brainstorm futuristic solutions, build cutting-edge prototypes, and compete with top innovators. Exciting cash prizes and Certificate of Participation for all!',
             'category' => 'Technical',
             'eventtype' => 'Team Event',
-            'min_team' => 2,
-            'max_team' => 4,
-            'event_rules' => "1. Maximum 4 members per team.\n2. Projects must be built from scratch during the hackathon.\n3. Decision of the jury is final and binding.",
-            'startdate' => '2026-10-15',
-            'enddate' => '2026-10-16',
-            'event_venue' => 'Main IT Block Auditorium',
-            'time' => '10:00 AM',
-            'event_price' => 199,
-            'event_thumbnail' => 'default_hackathon.jpg',
-            'event_sponsors' => 'Google Cloud, Microsoft, Github',
-            'event_prizes' => '1st Prize: ₹50,000 | 2nd Prize: ₹30,000 | 3rd Prize: ₹15,000',
+            'min_team' => 1,
+            'max_team' => 3,
+            'event_rules' => "1. Team Size: 1 to 3 members per team.\n2. Registration Fee: ₹150/- per team.\n3. Reporting Time: 8:30 AM sharp at VSIPS Seminar Hall.\n4. All projects and code must be developed during the hackathon.\n5. Evaluation criteria include Innovation, Technical Feasibility, UI/UX, and Presentation.\n6. Organising Team Contacts: Divyansh Tiwari (7985376380), Jonathan James (9235610062), Krishna Gupta (6392580618).",
+            'startdate' => '2026-10-25',
+            'enddate' => '2026-10-25',
+            'event_venue' => 'Seminar Hall, VSIPS (Juhi, Saket Nagar, Kanpur)',
+            'time' => '08:30 AM Onwards',
+            'event_price' => 150,
+            'event_thumbnail' => 'spectrum_hackathon_2026.png',
+            'event_sponsors' => 'Dr. Virendra Swaroop Institute of Computer Studies (VSICS)',
+            'event_prizes' => 'Exciting Cash Prizes & Winner Trophies + Certificate of Participation for all.',
             'publish_event' => 'yes',
             'open_closed' => 'open'
         ],
         [
-            'organizer_name' => 'System Admin',
-            'event_title' => 'Symphony Music Fest 2026',
-            'event_desc' => 'Showcase your musical talent at Symphony 2026. Solo singing, group bands, and instrumental performances are welcome. Join us for a night of beautiful melodies and rock beats!',
+            'organizer_name' => 'VSICS BCA Final Year',
+            'event_title' => 'Navrang Dandiya 2k26',
+            'event_desc' => 'A grand celebration of cultural heritage and unity presented by BCA Final Year, Dr. Virendra Swaroop Institute of Computer Studies. Traditional vibes meet modern vibes! Same beats, new memories. Join us for a magical evening of Dandiya Raas, pulsating music, festive beats, and vibrant celebrations. Available seats: 250 (First Come First Serve).',
             'category' => 'Cultural',
             'eventtype' => 'Single Participant',
             'min_team' => 0,
             'max_team' => 0,
-            'event_rules' => "1. Individual performances only.\n2. Maximum time limit is 5 minutes.\n3. Submit backing tracks at least 2 hours before the start.",
-            'startdate' => '2026-11-20',
-            'enddate' => '2026-11-20',
-            'event_venue' => 'Open Air Theater (OAT)',
-            'time' => '05:30 PM',
+            'event_rules' => "1. Traditional ethnic attire is mandatory for entry.\n2. Entry passes are strictly non-transferable.\n3. Available seats: 250 (First Come First Serve basis).\n4. Digital Pass verification required at the entry gate.\n5. Dandiya sticks will be provided at the venue.\n6. Connect: Instagram @bca_finalyear_vsics | Facebook @Vsicsbca1/2 | LinkedIn @VSICS BCA Final.",
+            'startdate' => '2026-10-18',
+            'enddate' => '2026-10-18',
+            'event_venue' => 'DR. VSIPS Campus Ground',
+            'time' => '05:30 PM Onwards',
+            'event_price' => 300,
+            'event_thumbnail' => 'navrang_dandiya_2026.jpg',
+            'event_sponsors' => 'Dr. Virendra Swaroop Institute of Professional Studies (VSIPS)',
+            'event_prizes' => 'Best Dressed Award, Best Dandiya Dancer & Best Group Performance awards.',
+            'publish_event' => 'yes',
+            'open_closed' => 'open'
+        ],
+        [
+            'organizer_name' => 'VSICS BCA Final Year',
+            'event_title' => 'PERCEPTION PARADIGM — Picture Perception & Thematic Aptitude Test',
+            'event_desc' => 'Picture Perception & Thematic Aptitude Test organized by BCA Final Year, Dr. Virendra Swaroop Institute of Computer Studies. "Look deeper, think wider, tell better." Challenge your observation skills, thematic storytelling, and analytical reasoning in this prestigious competition.',
+            'category' => 'Literary',
+            'eventtype' => 'Team Event',
+            'min_team' => 1,
+            'max_team' => 2,
+            'event_rules' => "1. Format: Individual or Team of Two.\n2. Step 1 (SEE): Look at the picture stimulus displayed on screen.\n3. Step 2 (INTERPRET): Analyze thematic cues, characters, and emotional context.\n4. Step 3 (PREPARE): Exactly 2 minutes preparation time.\n5. Step 4 (EXPRESS): 2 to 3 minutes presentation time before judges.\n6. Step 5 (Q&A): Answer quick thematic questions posed by the panel.\n7. Event Coordinators: Aman Yadav, Abhiroop Tiwari, Aditya Savita.",
+            'startdate' => '2026-09-24',
+            'enddate' => '2026-09-24',
+            'event_venue' => 'VSIPS Seminar Hall',
+            'time' => '11:00 AM',
             'event_price' => 0,
-            'event_thumbnail' => 'default_cultural.jpg',
-            'event_sponsors' => 'MTV, Spotify India',
-            'event_prizes' => 'Winner: ₹20,000 Trophy | Runner Up: ₹10,000',
-            'publish_event' => 'yes',
-            'open_closed' => 'open'
-        ],
-        [
-            'organizer_name' => 'System Admin',
-            'event_title' => 'Spardha Annual Sports Meet',
-            'event_desc' => 'Compete with the best athletes in track events, basketball, volleyball, and football at the Spardha Annual Athletics Meet. Bring your college glory back home!',
-            'category' => 'Sports',
-            'eventtype' => 'Single Participant',
-            'min_team' => 0,
-            'max_team' => 0,
-            'event_rules' => "1. Standard sporting gear is mandatory.\n2. Referees decisions will be final.\n3. ID Card registration verification required at entry.",
-            'startdate' => '2026-12-05',
-            'enddate' => '2026-12-08',
-            'event_venue' => 'University Sports Complex Ground',
-            'time' => '08:00 AM',
-            'event_price' => 99,
-            'event_thumbnail' => 'default_sports.jpg',
-            'event_sponsors' => 'RedBull, Decathlon',
-            'event_prizes' => 'Gold, Silver & Bronze Medals + Cash rewards for best performers',
-            'publish_event' => 'yes',
-            'open_closed' => 'open'
-        ],
-        [
-            'organizer_name' => 'System Admin',
-            'event_title' => 'Generative AI & LLM Bootcamp',
-            'event_desc' => 'Hands-on workshop on building applications with OpenAI API, LangChain, and vector databases. Develop a real chatbot during the bootcamp. Certificates will be provided to all attendees.',
-            'category' => 'Workshops',
-            'eventtype' => 'Single Participant',
-            'min_team' => 0,
-            'max_team' => 0,
-            'event_rules' => "1. Basic python knowledge is recommended.\n2. Bring your own laptop.\n3. Active internet access will be provided.",
-            'startdate' => '2026-09-10',
-            'enddate' => '2026-09-11',
-            'event_venue' => 'Seminar Hall 3, Block C',
-            'time' => '09:30 AM',
-            'event_price' => 149,
-            'event_thumbnail' => 'default_workshop.jpg',
-            'event_sponsors' => 'OpenAI Developer Group, HuggingFace',
-            'event_prizes' => 'Certificate of Mastery + API credits worth $50 for top 5 projects',
+            'event_thumbnail' => 'perception_paradigm_2026.png',
+            'event_sponsors' => 'Dr. Virendra Swaroop Institute of Computer Studies (VSICS)',
+            'event_prizes' => 'Certificate of Excellence for Top Storytellers & Thematic Thinkers.',
             'publish_event' => 'yes',
             'open_closed' => 'open'
         ]
@@ -137,10 +117,9 @@ if ($check_gal) {
 
 if ($gal_count < 3) {
     $gal_seeds = [
-        ['event_name' => 'MMDU National Hackathon 2026', 'organizer_name' => 'System Admin', 'image' => 'default_hackathon.jpg', 'date' => '2026-08-10', 'category' => 'Technical'],
-        ['event_name' => 'Symphony Music Fest 2026', 'organizer_name' => 'System Admin', 'image' => 'default_cultural.jpg', 'date' => '2026-08-11', 'category' => 'Cultural'],
-        ['event_name' => 'Spardha Annual Sports Meet', 'organizer_name' => 'System Admin', 'image' => 'default_sports.jpg', 'date' => '2026-08-12', 'category' => 'Sports'],
-        ['event_name' => 'Generative AI & LLM Bootcamp', 'organizer_name' => 'System Admin', 'image' => 'default_workshop.jpg', 'date' => '2026-08-13', 'category' => 'Workshops']
+        ['event_name' => 'SPECTRUM 2026 — The Innovation Hackathon', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'spectrum_hackathon_2026.png', 'date' => '2026-10-25', 'category' => 'Technical'],
+        ['event_name' => 'Navrang Dandiya 2k26', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'navrang_dandiya_2026.jpg', 'date' => '2026-10-18', 'category' => 'Cultural'],
+        ['event_name' => 'PERCEPTION PARADIGM', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'perception_paradigm_2026.png', 'date' => '2026-09-24', 'category' => 'Literary']
     ];
 
     foreach ($gal_seeds as $g) {
@@ -502,10 +481,12 @@ function openBentoModal(feature) {
       <h3 style="color:#fff; font-weight:700; margin-bottom:10px;">AI Recommended Events</h3>
       <p style="color:var(--eh-muted); font-size:14px; margin-bottom:20px;">Based on popular trends, these top college events are recommended for you:</p>
       <div style="text-align:left; background:rgba(255,255,255,0.02); padding:15px; border-radius:10px; border:1px solid rgba(255,255,255,0.05); margin-bottom:20px;">
-        <div style="font-weight:600; color:#fff; margin-bottom:4px;">1. MMDU National Hackathon 2026</div>
-        <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Technical • 24hr Coding Challenge</div>
-        <div style="font-weight:600; color:#fff; margin-bottom:4px;">2. Symphony Music Fest 2026</div>
-        <div style="font-size:12px; color:var(--eh-muted);">Cultural • Singing & Band competition</div>
+        <div style="font-weight:600; color:#fff; margin-bottom:4px;">1. SPECTRUM 2026 — The Innovation Hackathon</div>
+        <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Technical • 1-3 Member Teams • Cash Prizes</div>
+        <div style="font-weight:600; color:#fff; margin-bottom:4px;">2. Navrang Dandiya 2k26</div>
+        <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Cultural • Dandiya Raas • First Come First Serve</div>
+        <div style="font-weight:600; color:#fff; margin-bottom:4px;">3. PERCEPTION PARADIGM</div>
+        <div style="font-size:12px; color:var(--eh-muted);">Literary • Picture Perception & Thematic Test</div>
       </div>
       <a href="events.php" class="eh-btn eh-btn-primary" style="width:100%; justify-content:center;">Explore All Events</a>
     `;
@@ -930,10 +911,9 @@ function getChatbotResponse(rawQuery) {
     q.includes('kaun se event')
   ) {
     return "🎪 **Current Trending Events on EventHub Pro:**\n\n" +
-           "1. 💻 **MMDU National Hackathon 2026**: 24-hr team coding challenge with ₹50,000 cash prizes!\n" +
-           "2. 🎵 **Symphony Music Fest 2026**: High-voltage battle of the bands and open-mic singing (Free entry)!\n" +
-           "3. 🏆 **Spardha Annual Sports Meet**: Inter-college cricket, football, basketball & athletics.\n" +
-           "4. 🎨 **Fine Arts & Design Bootcamp**: Creative showcase & workshop.\n\n" +
+           "1. 💻 **SPECTRUM 2026 — The Innovation Hackathon**: Put your technical ingenuity to the test! Teams of 1-3, ₹150 entry, Seminar Hall VSIPS.\n" +
+           "2. 🪔 **Navrang Dandiya 2k26**: Grand cultural Dandiya Raas celebration by BCA Final Year! Traditional vibes, DJ beats & prizes. Pass ₹300 (First Come First Serve).\n" +
+           "3. 🧠 **PERCEPTION PARADIGM**: Picture Perception & Thematic Aptitude Test! Test observation, storytelling & theme analysis. Free Entry!\n\n" +
            "👉 Click **'Events'** in the top navbar to view dates, venue details, and register now!";
   }
 
@@ -960,23 +940,43 @@ function getChatbotResponse(rawQuery) {
     q.includes('hackathon') || 
     q.includes('coding') || 
     q.includes('tech') || 
-    q.includes('technical')
+    q.includes('technical') ||
+    q.includes('spectrum')
   ) {
-    return "💻 **Technical Events & Hackathons:**\n\n" +
-           "• **MMDU National Hackathon 2026**: 24-hour team coding battle, ₹199 entry, and ₹50,000 cash prizes!\n" +
-           "• Click 'Categories' in the navbar and filter by **Technical** to explore all upcoming coding fests, robotics challenges, and web dev hackathons.";
+    return "💻 **SPECTRUM 2026 — The Innovation Hackathon:**\n\n" +
+           "• **Organized By**: BCA Final Year, Dr. Virendra Swaroop Institute of Computer Studies (VSICS).\n" +
+           "• **Venue**: Seminar Hall, VSIPS (Juhi, Saket Nagar, Kanpur).\n" +
+           "• **Time**: 8:30 AM Onwards.\n" +
+           "• **Team Size**: 1 - 3 members (Fee: ₹150/- per team).\n" +
+           "• **Prizes**: Exciting Cash Prizes & Participation Certificates for all!\n" +
+           "• **Contacts**: Divyansh (7985376380), Jonathan (9235610062), Krishna (6392580618).";
   }
 
   if (
-    q.includes('music') || 
-    q.includes('cultural') || 
-    q.includes('symphony') || 
-    q.includes('dance') || 
-    q.includes('singing')
+    q.includes('dandiya') ||
+    q.includes('navrang') ||
+    q.includes('dance') ||
+    q.includes('cultural')
   ) {
-    return "🎵 **Cultural & Music Events:**\n\n" +
-           "• **Symphony Music Fest 2026**: Live battle of the bands, solo acoustic, and open mic. Entry is free!\n" +
-           "• Check the **Cultural** category for upcoming classical dance, theatre, rock band, and fashion shows.";
+    return "🪔 **Navrang Dandiya 2k26:**\n\n" +
+           "• **Theme**: Traditional Vibes, Modern Vibes — Same Beats, New Memories!\n" +
+           "• **Venue**: DR. VSIPS Campus Ground.\n" +
+           "• **Pass Fees**: ₹300 per pass (Limited to 250 seats — First Come First Serve).\n" +
+           "• **Highlights**: Dandiya Raas, Ethnic Dress Competitions, Music & Festive Energy!";
+  }
+
+  if (
+    q.includes('perception') ||
+    q.includes('paradigm') ||
+    q.includes('aptitude') ||
+    q.includes('story')
+  ) {
+    return "🧠 **PERCEPTION PARADIGM (Picture Perception & Thematic Aptitude Test):**\n\n" +
+           "• **Theme**: 'Look deeper, think wider, tell better.'\n" +
+           "• **Format**: Individual or Team of Two (2 min prep, 2-3 min presentation).\n" +
+           "• **Venue**: VSIPS Seminar Hall (24 Sept 2026, 11:00 AM).\n" +
+           "• **Entry**: Free Entry with Certificates of Excellence!\n" +
+           "• **Coordinators**: Aman Yadav, Abhiroop Tiwari, Aditya Savita.";
   }
 
   if (
