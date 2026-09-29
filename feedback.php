@@ -78,7 +78,7 @@ echo "<form action='feedbacksubmit.php?eventid=".$eventid."' method='post' encty
                             <li><a href="#">Archit Prajapati</a></li>
                             <li><a href="#">Archita Panday</a></li>
                             <li><a href="#">Ananya Gupta</a></li>
-                            <li><a href="#">Apuba Gosh</a></li>
+                            <li><a href="#">Apurba Ghosh</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">

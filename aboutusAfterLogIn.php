@@ -143,10 +143,10 @@
                         <p class="description">Initials: AG</p>
                     </div>
                 </div>
-                <!-- Apuba Gosh -->
+                <!-- Apurba Ghosh -->
                 <div class="col-md-6 item" style="margin-bottom: 30px;">
                     <div class="box">
-                        <h3 class="name">Apuba Gosh</h3>
+                        <h3 class="name">Apurba Ghosh</h3>
                         <p class="title">Documentation</p>
                         <p class="description">Initials: AG</p>
                     </div>
@@ -164,7 +164,7 @@
                             <li><a href="#">Archit Prajapati</a></li>
                             <li><a href="#">Archita Panday</a></li>
                             <li><a href="#">Ananya Gupta</a></li>
-                            <li><a href="#">Apuba Gosh</a></li>
+                            <li><a href="#">Apurba Ghosh</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">

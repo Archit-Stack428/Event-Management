@@ -114,11 +114,11 @@ include('header.php');
         </div>
       </div>
 
-      <!-- Apuba Gosh -->
+      <!-- Apurba Ghosh -->
       <div class="col-md-6" data-aos="fade-up" data-aos-delay="200" style="margin-top: 30px;">
         <div class="eh-card text-center" style="padding: 30px 20px; height: 100%;">
           <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 32px; margin: 0 auto 16px;">AG</div>
-          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Apuba Gosh</h3>
+          <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 5px;">Apurba Ghosh</h3>
           <p style="color: var(--eh-accent); font-size: 13px; margin-bottom: 15px;">Documentation</p>
           <div style="display: flex; justify-content: center; gap: 15px; min-height: 27px;"></div>
         </div>
