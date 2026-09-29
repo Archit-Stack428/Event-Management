@@ -8,6 +8,9 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
 chdir(__DIR__ . '/..');
 
+// Initialize database connection & validate persistent login token on every serverless invocation
+require_once __DIR__ . '/../dbconnect.php';
+
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 // Handle root path

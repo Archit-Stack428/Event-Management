@@ -56,7 +56,10 @@ if (isset($_POST['submit'])) {
             // Regenerate session ID to block session fixation attacks
             session_regenerate_id(true);
 
-            $_SESSION['username'] = $username;
+            // Establish 30-day persistent authentication token
+            require_once __DIR__ . '/auth_helper.php';
+            set_persistent_login($username, $conn);
+
             $_SESSION['success'] = "Welcome back!";
             header('Location: dashboard.php');
             exit;

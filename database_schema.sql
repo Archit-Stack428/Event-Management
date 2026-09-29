@@ -111,3 +111,14 @@ CREATE TABLE IF NOT EXISTS event_orders (
     INDEX idx_event_orders_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Persistent Auth Tokens (Remember Me)
+CREATE TABLE IF NOT EXISTS user_auth_tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    token_hash VARCHAR(64) NOT NULL,
+    expires_at DATETIME NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_auth_token_hash (token_hash),
+    INDEX idx_auth_token_user (username)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

@@ -4,9 +4,18 @@
    Modern glassmorphic registration page.
    Session alert states, dynamic fields, client-side matching.
    ============================================================= */
+require_once __DIR__ . '/dbconnect.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// If already authenticated via session or persistent token, redirect to dashboard
+if (isset($_SESSION['username']) && trim($_SESSION['username']) !== '') {
+    header('Location: dashboard.php');
+    exit;
+}
+
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }

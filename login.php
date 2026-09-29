@@ -4,9 +4,18 @@
    Modern glassmorphic authentication page.
    Dynamically displays secure session alert states.
    ============================================================= */
+require_once __DIR__ . '/dbconnect.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// If already authenticated via session or persistent token, redirect to dashboard
+if (isset($_SESSION['username']) && trim($_SESSION['username']) !== '') {
+    header('Location: dashboard.php');
+    exit;
+}
+
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -119,9 +128,16 @@ function handleCredentialResponse(response) {
             <input type="text" id="username" name="username" placeholder="Enter your email address" required style="width:100%;">
           </div>
 
-          <div class="eh-field full eh-animate-fade-in stagger-3" style="margin-bottom:30px;">
+          <div class="eh-field full eh-animate-fade-in stagger-3" style="margin-bottom:20px;">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required style="width:100%;">
+          </div>
+
+          <div class="eh-field full eh-animate-fade-in stagger-3" style="margin-bottom:24px; display:flex; align-items:center; justify-content:space-between;">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:var(--eh-muted); font-size:14px; user-select:none; margin:0;">
+              <input type="checkbox" name="remember_me" value="1" checked style="width:16px; height:16px; accent-color:var(--eh-accent, #7C3AED); cursor:pointer;">
+              <span>Keep me logged in (30 days)</span>
+            </label>
           </div>
 
           <button type="submit" name="submit" class="eh-btn eh-btn-primary eh-animate-fade-in stagger-4" style="width:100%; justify-content:center; padding:12px;"><i class="fas fa-sign-in-alt"></i> Log In</button>

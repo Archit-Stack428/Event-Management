@@ -97,7 +97,8 @@ if ($existing_user) {
     // CASE A: Link / Login Existing Account
     // Regenerate session to block session fixation attacks
     session_regenerate_id(true);
-    $_SESSION['username'] = $email;
+    require_once __DIR__ . '/auth_helper.php';
+    set_persistent_login($email, $conn);
     $_SESSION['success'] = "Logged in successfully via Google!";
     echo json_encode(['success' => true]);
     exit;
@@ -114,7 +115,8 @@ if ($existing_user) {
 
     if ($insert_result) {
         session_regenerate_id(true);
-        $_SESSION['username'] = $email;
+        require_once __DIR__ . '/auth_helper.php';
+        set_persistent_login($email, $conn);
         $_SESSION['success'] = "Account created and logged in via Google!";
         echo json_encode(['success' => true]);
         exit;
