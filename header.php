@@ -84,4 +84,5 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
       <a class="eh-btn eh-btn-primary" href="<?php echo (isset($_SESSION['username']) && $_SESSION['username'] !== '') ? 'createevent.php' : 'login.php'; ?>"><i class="fas fa-plus"></i> Create Event</a>
       <button class="eh-nav-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
+  </div>
 </nav>
