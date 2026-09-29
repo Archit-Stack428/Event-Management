@@ -450,32 +450,42 @@ $testimonials = [
 <!-- Floating Chatbot Widget -->
 <div id="ehChatbotWidget" style="position:fixed; bottom:30px; right:30px; z-index:9999; font-family:'Inter', sans-serif;">
   <!-- Chat Button -->
-  <button onclick="toggleChatbot()" id="ehChatBtn" style="width:60px; height:60px; border-radius:50%; background:var(--eh-accent, #7C3AED); border:none; color:#fff; font-size:24px; cursor:pointer; box-shadow:0 8px 24px rgba(124,58,237,0.4); display:flex; align-items:center; justify-content:center; transition:transform 0.3s;">
+  <button onclick="toggleChatbot()" id="ehChatBtn" aria-label="Open AI Assistant" style="width:60px; height:60px; border-radius:50%; background:var(--eh-accent, #7C3AED); border:none; color:#fff; font-size:24px; cursor:pointer; box-shadow:0 8px 24px rgba(124,58,237,0.4); display:flex; align-items:center; justify-content:center; transition:transform 0.3s;">
     <i class="fas fa-comments"></i>
   </button>
   
   <!-- Chat Box Panel -->
-  <div id="ehChatBox" class="eh-panel" style="display:none; width:360px; height:450px; position:absolute; bottom:80px; right:0; padding:0; border-radius:20px; border:1px solid rgba(255,255,255,0.08); background:rgba(9,9,11,0.95); backdrop-filter:blur(15px); flex-direction:column; overflow:hidden; box-shadow:0 15px 35px rgba(0,0,0,0.4);">
+  <div id="ehChatBox" class="eh-panel" style="display:none; width:380px; height:510px; max-height:82vh; max-width:calc(100vw - 36px); position:absolute; bottom:80px; right:0; padding:0; border-radius:22px; border:1px solid rgba(255,255,255,0.12); background:rgba(9,9,11,0.96); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); flex-direction:column; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.6);">
     <!-- Chat Header -->
-    <div style="background:rgba(255,255,255,0.02); padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
+    <div style="background:rgba(255,255,255,0.03); padding:16px 20px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; justify-content:space-between; align-items:center;">
       <div style="display:flex; align-items:center; gap:10px;">
-        <div style="width:10px; height:10px; border-radius:50%; background:#10b981;"></div>
-        <span style="font-weight:700; color:#fff; font-size:15px;">EventHub AI Assistant</span>
+        <div style="width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 10px #10b981;"></div>
+        <div>
+          <div style="font-weight:700; color:#fff; font-size:14.5px; line-height:1.2;">EventHub AI Assistant</div>
+          <div style="font-size:11px; color:#10b981;">Online • Fast &amp; Secure</div>
+        </div>
       </div>
-      <button onclick="toggleChatbot()" style="background:none; border:none; color:var(--eh-muted); cursor:pointer;"><i class="fas fa-times"></i></button>
+      <button onclick="toggleChatbot()" aria-label="Close Chat" style="background:none; border:none; color:var(--eh-muted); font-size:16px; cursor:pointer; padding:6px;"><i class="fas fa-times"></i></button>
     </div>
     
     <!-- Chat Messages -->
-    <div id="ehChatMessages" style="flex:1; padding:20px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; font-size:13px; color:#fff; text-align:left;">
-      <div style="background:rgba(255,255,255,0.04); padding:10px 14px; border-radius:14px 14px 14px 0; align-self:flex-start; max-width:80%;">
-        Hello! I'm your EventHub Pro assistant. How can I help you today?
+    <div id="ehChatMessages" style="flex:1; padding:18px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; font-size:13px; color:#fff; text-align:left;">
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); padding:12px 14px; border-radius:16px 16px 16px 0; align-self:flex-start; max-width:88%; line-height:1.5;">
+        👋 <b>Welcome! I am your EventHub Pro AI Assistant.</b><br>
+        Ask me anything about finding events, registrations, UPI payments, QR tickets, or hosting your own fest!
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:10px;">
+          <button type="button" onclick="askQuickPrompt('Explain how can I use this website')" style="text-align:left; background:rgba(124,58,237,0.18); border:1px solid rgba(124,58,237,0.35); color:#ddd6fe; padding:7px 11px; border-radius:8px; font-size:12px; cursor:pointer; transition:all .2s;">💡 How to use this website?</button>
+          <button type="button" onclick="askQuickPrompt('How do I register for an event?')" style="text-align:left; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#e2e8f0; padding:7px 11px; border-radius:8px; font-size:12px; cursor:pointer; transition:all .2s;">📝 How to register for an event?</button>
+          <button type="button" onclick="askQuickPrompt('How to pay via UPI & get QR ticket?')" style="text-align:left; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#e2e8f0; padding:7px 11px; border-radius:8px; font-size:12px; cursor:pointer; transition:all .2s;">💳 UPI Payments & QR Tickets</button>
+          <button type="button" onclick="askQuickPrompt('How can I create and host my own event?')" style="text-align:left; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#e2e8f0; padding:7px 11px; border-radius:8px; font-size:12px; cursor:pointer; transition:all .2s;">🚀 Host your own event</button>
+        </div>
       </div>
     </div>
     
     <!-- Chat Input -->
-    <form onsubmit="sendChatMessage(event)" style="padding:15px; border-top:1px solid rgba(255,255,255,0.05); display:flex; gap:10px; margin:0;">
-      <input type="text" id="ehChatInput" placeholder="Type a message..." required style="flex:1; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:10px 14px; border-radius:10px; color:#fff; font-size:13px; outline:none;">
-      <button type="submit" style="background:var(--eh-accent, #7C3AED); border:none; color:#fff; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"><i class="fas fa-paper-plane"></i></button>
+    <form onsubmit="sendChatMessage(event)" style="padding:14px; border-top:1px solid rgba(255,255,255,0.06); background:rgba(9,9,11,0.7); display:flex; gap:10px; margin:0; align-items:center;">
+      <input type="text" id="ehChatInput" placeholder="Ask about events, tickets, UPI, host..." required style="flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); padding:10px 14px; border-radius:12px; color:#fff; font-size:13px; outline:none;">
+      <button type="submit" aria-label="Send Message" style="background:var(--eh-gradient, linear-gradient(135deg,#7C3AED,#2563EB)); border:none; color:#fff; width:38px; height:38px; border-radius:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 14px rgba(124,58,237,0.35);"><i class="fas fa-paper-plane"></i></button>
     </form>
   </div>
 </div>
@@ -561,6 +571,14 @@ function toggleChatbot() {
   }
 }
 
+function askQuickPrompt(text) {
+  var input = document.getElementById('ehChatInput');
+  if (!input) return;
+  input.value = text;
+  var event = new Event('submit', { cancelable: true });
+  input.form.dispatchEvent(event);
+}
+
 function sendChatMessage(e) {
   e.preventDefault();
   var input = document.getElementById('ehChatInput');
@@ -570,10 +588,44 @@ function sendChatMessage(e) {
   addChatMessage(msg, 'user');
   input.value = '';
   
+  // Show typing indicator
+  var typingDiv = showTypingIndicator();
+  
   setTimeout(function() {
+    if (typingDiv && typingDiv.parentNode) {
+      typingDiv.parentNode.removeChild(typingDiv);
+    }
     var response = getChatbotResponse(msg);
     addChatMessage(response, 'bot');
-  }, 600);
+  }, 450);
+}
+
+function showTypingIndicator() {
+  var msgsContainer = document.getElementById('ehChatMessages');
+  var typing = document.createElement('div');
+  typing.id = 'ehTypingBubble';
+  typing.style.background = 'rgba(255, 255, 255, 0.05)';
+  typing.style.borderRadius = '14px 14px 14px 0';
+  typing.style.alignSelf = 'flex-start';
+  typing.style.padding = '8px 14px';
+  typing.style.fontSize = '12px';
+  typing.style.color = '#94a3b8';
+  typing.style.display = 'flex';
+  typing.style.alignItems = 'center';
+  typing.style.gap = '6px';
+  typing.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Assistant is thinking...</span>';
+  msgsContainer.appendChild(typing);
+  msgsContainer.scrollTop = msgsContainer.scrollHeight;
+  return typing;
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function addChatMessage(text, sender) {
@@ -581,47 +633,281 @@ function addChatMessage(text, sender) {
   var msgDiv = document.createElement('div');
   
   if (sender === 'user') {
-    msgDiv.style.background = 'var(--eh-accent, #7C3AED)';
-    msgDiv.style.borderRadius = '14px 14px 0 14px';
+    msgDiv.style.background = 'var(--eh-gradient, linear-gradient(135deg, #7C3AED, #2563EB))';
+    msgDiv.style.borderRadius = '16px 16px 0 16px';
     msgDiv.style.alignSelf = 'flex-end';
+    msgDiv.style.color = '#fff';
+    msgDiv.style.boxShadow = '0 4px 15px rgba(124,58,237,0.3)';
+    msgDiv.textContent = text;
   } else {
-    msgDiv.style.background = 'rgba(255, 255, 255, 0.04)';
-    msgDiv.style.borderRadius = '14px 14px 14px 0';
+    msgDiv.style.background = 'rgba(255, 255, 255, 0.05)';
+    msgDiv.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+    msgDiv.style.borderRadius = '16px 16px 16px 0';
     msgDiv.style.alignSelf = 'flex-start';
+    msgDiv.style.color = '#f1f5f9';
+    msgDiv.style.lineHeight = '1.55';
+    
+    // Format text safely: escape raw input first, then convert linebreaks and bold
+    var safe = escapeHtml(text);
+    safe = safe.replace(/\n\n/g, '<div style="margin-top:8px;"></div>');
+    safe = safe.replace(/\n/g, '<br>');
+    safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    msgDiv.innerHTML = safe;
   }
   
-  msgDiv.style.padding = '10px 14px';
-  msgDiv.style.maxWidth = '80%';
-  msgDiv.innerText = text;
+  msgDiv.style.padding = '11px 15px';
+  msgDiv.style.maxWidth = '86%';
   
   msgsContainer.appendChild(msgDiv);
   msgsContainer.scrollTop = msgsContainer.scrollHeight;
 }
 
-function getChatbotResponse(query) {
-  query = query.toLowerCase();
-  if (query.includes('hackathon') || query.includes('coding')) {
-    return 'The MMDU National Hackathon 2026 starts on Oct 15. It is a 24-hour team coding event with an entry fee of ₹199 and cash prizes up to ₹50,000!';
+function getChatbotResponse(rawQuery) {
+  var q = rawQuery.toLowerCase().trim();
+
+  // 1. SECURITY & PRIVACY GUARD (Strict Anti-Leak & Anti-Injection)
+  var securityPatterns = [
+    /\b(password|passwords|hash|salt|credentials|secret|token|csrf|session|cookie|phpsessid)\b/i,
+    /\b(database|db_host|db_user|db_password|dbconnect|tidb|mysql|sql|table schema|dump)\b/i,
+    /\b(select\s+\*|union\s+select|insert\s+into|drop\s+table|delete\s+from|update\s+sign_up)\b/i,
+    /\b(admin\s+credentials|admin\s+password|root\s+password|user\s+data|private\s+keys)\b/i,
+    /\b(api\s+key|secret\s+key|razorpay_secret|google_secret|env|environment\s+variables)\b/i,
+    /\b(source\s+code|backend\s+code|eval\(|<script|ignore\s+previous\s+instructions)\b/i
+  ];
+
+  for (var i = 0; i < securityPatterns.length; i++) {
+    if (securityPatterns[i].test(q)) {
+      return "🔒 **Security & Privacy Protected**\n\nI am strictly programmed to protect user privacy and internal system security. I cannot access, reveal, or discuss database credentials, passwords, server configurations, or confidential user information.\n\nI am happy to assist you with event browsing, registration, UPI payments, and ticketing on EventHub Pro!";
+    }
   }
-  if (query.includes('music') || query.includes('symphony') || query.includes('cultural')) {
-    return 'Symphony Music Fest 2026 is scheduled for Nov 20 at the Open Air Theater. Entry is free!';
+
+  // 2. PLATFORM OVERVIEW / HOW TO USE / GUIDE ME
+  if (
+    q.includes('explain') || 
+    q.includes('how can i use') || 
+    q.includes('how to use') || 
+    q.includes('guide me') || 
+    q.includes('guide') || 
+    q.includes('website overview') || 
+    q.includes('kaise use') || 
+    q.includes('kya h ye') || 
+    q.includes('kya hai ye') || 
+    q.includes('use this website') || 
+    q.includes('help me understand') || 
+    q.includes('what is eventhub') ||
+    q.includes('features of this website') ||
+    q.includes('tutorial')
+  ) {
+    return "🎉 **Welcome to EventHub Pro!** Here is a complete guide on how to use this platform:\n\n" +
+           "1️⃣ **Browse Events**: Click 'Events' in the top menu to view all upcoming Hackathons, Workshops, Cultural Fests, and Sports Meets. You can search by event name or filter by category.\n\n" +
+           "2️⃣ **Register Easily**: Click on any event card to view the venue, timings, and prizes. Click 'Register', fill in your participant details, and submit.\n\n" +
+           "3️⃣ **Instant UPI Payment**: For paid events, scan the dynamic UPI QR code or pay with PhonePe, Google Pay, Paytm, or BHIM.\n\n" +
+           "4️⃣ **Digital QR Ticket**: As soon as you register, you receive a digital QR ticket with your unique Ticket ID. Save it on your phone to scan at the venue gate for instant check-in!\n\n" +
+           "5️⃣ **Host Your Own Event**: If you are an organizer or college society, log in and click 'Create Event' to publish your fest and track attendees in real time!";
   }
-  if (query.includes('register') || query.includes('how to register')) {
-    return 'To register for an event, explore the Events list, click on any event card, and select the Register button!';
+
+  // 3. REGISTRATION PROCESS / HOW TO REGISTER
+  if (
+    q.includes('how to register') || 
+    q.includes('register into') || 
+    q.includes('registration process') || 
+    q.includes('register kaise') || 
+    q.includes('form kaise') || 
+    q.includes('how do i join') || 
+    q.includes('part le') || 
+    q.includes('participate') ||
+    q.includes('enroll') ||
+    q.includes('entry kaise')
+  ) {
+    return "📝 **How to Register for an Event:**\n\n" +
+           "1. Go to the **Events** page from the top navbar.\n" +
+           "2. Choose the event you want to join and click **Register**.\n" +
+           "3. Fill out the registration form (Name, Email, Mobile Number, College).\n" +
+           "4. For team events, you can specify team size and team member names.\n" +
+           "5. Complete checkout via instant UPI QR (for paid events) or submit for free events.\n" +
+           "6. Your verified digital QR ticket will be displayed instantly!";
   }
-  if (query.includes('payment') || query.includes('upi') || query.includes('pay')) {
-    return 'We accept instant, secure payments via UPI! You can pay using your preferred UPI app (PhonePe, Google Pay, Paytm, BHIM) or by scanning the UPI QR code during checkout.';
+
+  // 4. UPI PAYMENTS & TRANSACTIONS
+  if (
+    q.includes('payment') || 
+    q.includes('upi') || 
+    q.includes('pay') || 
+    q.includes('fees') || 
+    q.includes('charges') || 
+    q.includes('price') || 
+    q.includes('cost') || 
+    q.includes('phonepe') || 
+    q.includes('gpay') || 
+    q.includes('google pay') || 
+    q.includes('paytm') || 
+    q.includes('bhim') || 
+    q.includes('paisa')
+  ) {
+    return "💳 **Instant UPI Payments on EventHub Pro:**\n\n" +
+           "• We support all popular UPI apps: **PhonePe, Google Pay, Paytm, BHIM**, and banking UPI apps.\n" +
+           "• During event checkout, a dynamic UPI QR code with the exact fee will be generated.\n" +
+           "• Scan the code using your phone or pay directly to the organizer UPI ID.\n" +
+           "• Payments are fast and 100% secure. No banking passwords or debit card credentials are ever requested or stored on our servers!";
   }
-  if (query.includes('ticket') || query.includes('qr')) {
-    return 'Once registered, a dynamic QR ticket will be shown to you. Take a screenshot and bring it to the venue for scanning.';
+
+  // 5. QR CODE TICKETS & GATE ENTRY
+  if (
+    q.includes('ticket') || 
+    q.includes('qr') || 
+    q.includes('pass') || 
+    q.includes('entry') || 
+    q.includes('admit') || 
+    q.includes('gate pass')
+  ) {
+    return "🎟️ **Digital QR Tickets & Gate Check-In:**\n\n" +
+           "• Upon completing registration, you immediately get a dynamic QR code ticket.\n" +
+           "• It contains your unique Registration ID and verified entry timestamp.\n" +
+           "• Simply take a screenshot or save the ticket on your phone.\n" +
+           "• When you arrive at the venue, the event coordinators will scan your QR code with the EventHub Pro camera scanner for rapid, paperless gate entry!";
   }
-  if (query.includes('sports') || query.includes('spardha')) {
-    return 'The Spardha Annual Sports Meet starts on Dec 5 at the University Sports Complex. Tickets are ₹99.';
+
+  // 6. CREATING / HOSTING AN EVENT (ORGANIZERS)
+  if (
+    q.includes('create event') || 
+    q.includes('host event') || 
+    q.includes('organize event') || 
+    q.includes('event kaise banaye') || 
+    q.includes('add event') || 
+    q.includes('publish event') || 
+    q.includes('new event')
+  ) {
+    return "🚀 **How to Host & Create Your Event:**\n\n" +
+           "1. Log in to your organizer account (or create one using Sign Up).\n" +
+           "2. Click the **+ Create Event** button in the top navbar.\n" +
+           "3. Follow the simple 4-step wizard:\n" +
+           "   • **Step 1: Basics** (Title, Category, Type, Description)\n" +
+           "   • **Step 2: Schedule & Venue** (Date, Timing, College / Hall)\n" +
+           "   • **Step 3: Rules & Prizes** (Eligibility, Cash Rewards)\n" +
+           "   • **Step 4: Media** (Upload high-resolution event banner)\n" +
+           "4. Click Publish and your event is live for thousands of attendees!";
   }
-  if (query.includes('hello') || query.includes('hi')) {
-    return 'Hello! How can I help you find or register for events today?';
+
+  // 7. ADMIN PANEL & DASHBOARD
+  if (
+    q.includes('admin') || 
+    q.includes('dashboard') || 
+    q.includes('organizer panel') || 
+    q.includes('manage events') || 
+    q.includes('attendees') || 
+    q.includes('participant list')
+  ) {
+    return "📊 **Organizer Dashboard & Admin Panel:**\n\n" +
+           "• Access it anytime by clicking **Dashboard** in the navbar or visiting `/admin`.\n" +
+           "• Features included:\n" +
+           "  - Total events overview and real-time revenue analytics.\n" +
+           "  - Edit, delete, and toggle publish/unpublish for your events.\n" +
+           "  - View participant lists and download registered attendee details.\n" +
+           "  - Upload photos to the public Gallery.\n" +
+           "  - Create new organizer accounts securely.";
   }
-  return "I'm here to help! You can ask me about events, tickets, UPI payments, or hackathon details. Feel free to ask!";
+
+  // 8. LOGIN / SIGNUP / ACCOUNT RECOVERY
+  if (
+    q.includes('login') || 
+    q.includes('sign in') || 
+    q.includes('signup') || 
+    q.includes('sign up') || 
+    q.includes('register account') || 
+    q.includes('create account') || 
+    q.includes('account kaise') || 
+    q.includes('logout')
+  ) {
+    return "🔐 **Account Access & Login:**\n\n" +
+           "• Click **Login** in the top navbar to sign in with your email and password.\n" +
+           "• You can also use one-click **Continue with Google** for instant access.\n" +
+           "• If you don't have an account, switch to the **Sign Up** tab to create one in seconds.\n" +
+           "• EventHub Pro features a 30-day persistent session, so you stay logged in without repeated prompts!";
+  }
+
+  // 9. EVENT CATEGORIES / SPECIFIC POPULAR EVENTS
+  if (
+    q.includes('hackathon') || 
+    q.includes('coding') || 
+    q.includes('tech') || 
+    q.includes('technical')
+  ) {
+    return "💻 **Technical Events & Hackathons:**\n\n" +
+           "• **MMDU National Hackathon 2026**: 24-hour team coding battle, ₹199 entry, and ₹50,000 cash prizes!\n" +
+           "• Click 'Categories' in the navbar and filter by **Technical** to explore all upcoming coding fests, robotics challenges, and web dev hackathons.";
+  }
+
+  if (
+    q.includes('music') || 
+    q.includes('cultural') || 
+    q.includes('symphony') || 
+    q.includes('dance') || 
+    q.includes('singing')
+  ) {
+    return "🎵 **Cultural & Music Events:**\n\n" +
+           "• **Symphony Music Fest 2026**: Live battle of the bands, solo acoustic, and open mic. Entry is free!\n" +
+           "• Check the **Cultural** category for upcoming classical dance, theatre, rock band, and fashion shows.";
+  }
+
+  if (
+    q.includes('sports') || 
+    q.includes('game') || 
+    q.includes('tournament') || 
+    q.includes('spardha') || 
+    q.includes('cricket') || 
+    q.includes('football')
+  ) {
+    return "🏆 **Sports Meets & Tournaments:**\n\n" +
+           "• **Spardha Annual Sports Meet**: Inter-college cricket, football, volleyball, badminton, and athletics.\n" +
+           "• Check the **Sports** category on the Events page for schedule, fixtures, and participation fees.";
+  }
+
+  // 10. PRICING & SUBSCRIPTION PLANS
+  if (
+    q.includes('pricing') || 
+    q.includes('plans') || 
+    q.includes('free plan') || 
+    q.includes('pro plan') || 
+    q.includes('subscription')
+  ) {
+    return "🏷️ **EventHub Pro Organizer Plans:**\n\n" +
+           "• **Free Plan (₹0)**: Up to 50 registrations, basic analytics, and community support.\n" +
+           "• **Pro Plan (₹499)**: Unlimited registrations, advanced analytics, instant UPI payments, and dynamic QR ticketing.\n" +
+           "• **Enterprise**: Custom volume and university-wide management with dedicated SLA.";
+  }
+
+  // 11. CONTACT & SUPPORT
+  if (
+    q.includes('contact') || 
+    q.includes('support') || 
+    q.includes('help') || 
+    q.includes('email') || 
+    q.includes('helpline') || 
+    q.includes('phone') || 
+    q.includes('feedback')
+  ) {
+    return "📞 **Support & Assistance:**\n\n" +
+           "• Email us directly: **hello@eventhubpro.com**\n" +
+           "• Visit the Contact page: Click **Contact** in the top navbar.\n" +
+           "• Submit Feedback: Click **Feedback** in the footer to help us improve!\n" +
+           "Our team is happy to help with any event inquiries or registration questions.";
+  }
+
+  // 12. GREETINGS & POLITE PHRASES (Strict whole-word matching)
+  if (/\b(hello|hi|hey|heya|namaste|greetings|good morning|good afternoon|good evening)\b/i.test(q)) {
+    return "👋 **Hello! I am your EventHub Pro AI Assistant.**\n\nHow can I help you today? You can ask me:\n• 'Explain how to use this website'\n• 'How to register for an event'\n• 'How to pay via UPI & get QR ticket'\n• 'How to create and host an event'\n• 'Show upcoming Hackathons'";
+  }
+
+  if (/\b(thanks|thank you|dhanyawad|shukriya|great|awesome|perfect|good)\b/i.test(q)) {
+    return "You're very welcome! 😊 Feel free to ask anytime if you need help finding events or managing tickets on EventHub Pro. Enjoy your experience!";
+  }
+
+  if (/\b(bye|goodbye|see you|tata)\b/i.test(q)) {
+    return "Goodbye! Have a fantastic day ahead, and we hope to see you at the events! 🎉";
+  }
+
+  // 13. INTELLIGENT FALLBACK
+  return "I'm here to assist you with everything on EventHub Pro! 🌟\n\nCould you please specify your question? For example, you can ask:\n• **'Explain how can I use this website'**\n• **'How do I register for an event?'**\n• **'How to pay via UPI and get my QR ticket?'**\n• **'How can I create or host an event?'**\n• **'Show me upcoming Hackathons or Sports meets'**";
 }
 </script>
 
