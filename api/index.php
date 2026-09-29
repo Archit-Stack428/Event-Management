@@ -11,23 +11,36 @@ chdir(__DIR__ . '/..');
 // Initialize database connection & validate persistent login token on every serverless invocation
 require_once __DIR__ . '/../dbconnect.php';
 
-$uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$rawUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$uri = '/' . trim($rawUri, '/');
 
 // Handle root path
-if ($uri === '/' || $uri === '' || $uri === '/index.php') {
+if ($uri === '/' || $uri === '/index.php') {
     require __DIR__ . '/../index.php';
+    exit;
+}
+
+// Admin panel alias: /admin or /admin.php -> dashboard.php
+if ($uri === '/admin' || $uri === '/admin.php') {
+    require __DIR__ . '/../dashboard.php';
     exit;
 }
 
 $target = __DIR__ . '/..' . $uri;
 
-// If a PHP file exists matching the request path, require it
+// If a PHP file exists matching the exact request path, require it
 if (file_exists($target) && !is_dir($target)) {
     $ext = strtolower(pathinfo($target, PATHINFO_EXTENSION));
     if ($ext === 'php') {
         require $target;
         exit;
     }
+}
+
+// If $uri . '.php' exists, require it (supports clean URLs like /dashboard, /events, /login)
+if (file_exists($target . '.php') && !is_dir($target . '.php')) {
+    require $target . '.php';
+    exit;
 }
 
 // Fallback to index.php
