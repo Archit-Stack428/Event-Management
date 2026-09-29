@@ -5,7 +5,7 @@
    Gallery. Uses reusable header.php / footer.php.
    Backend logic (auth, registration, Stripe) untouched.
    ============================================================= */
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 include('dbconnect.php');
 
 // ---- Self-Healing Event Seeder ----

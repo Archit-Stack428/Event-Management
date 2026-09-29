@@ -8,6 +8,12 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
 chdir(__DIR__ . '/..');
 
+set_exception_handler(function($e) {
+    http_response_code(500);
+    echo "<h1>Error</h1><pre>" . htmlspecialchars($e->getMessage()) . "\n" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    exit;
+});
+
 // Initialize database connection & validate persistent login token on every serverless invocation
 require_once __DIR__ . '/../dbconnect.php';
 
