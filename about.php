@@ -7,7 +7,7 @@ session_start();
 include('dbconnect.php');
 
 $page_title = 'About Us — EventHub Pro';
-$page_desc = 'Learn about EventHub Pro, our mission to revolutionize college event management, our mentors, and our engineering team.';
+$page_desc = 'Learn about EventHub Pro, our mission to revolutionize college event management, our mentor, and our engineering team.';
 
 include('header.php');
 ?>
@@ -52,37 +52,22 @@ include('header.php');
   </div>
 </section>
 
-<!-- ===== Mentors section ===== -->
+<!-- ===== Mentor section ===== -->
 <section class="eh-section" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03);">
   <div class="container-max">
     <div class="eh-sec-head" style="text-align: center;" data-aos="fade-up">
       <span class="eh-eyebrow">Guidance</span>
-      <h2>Our Mentors</h2>
+      <h2>Our Mentor</h2>
       <p>Under whose supervision and encouragement this project was brought to fruition.</p>
     </div>
     
     <div class="row justify-content-center" style="gap: 30px 0;">
-      <div class="col-md-5 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="eh-card text-center" style="padding: 40px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 100px; height: 100px; font-size: 40px; margin: 0 auto 20px;">GS</div>
-          <h3 style="color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 5px;">Dr. Gunjan Sethi</h3>
-          <p style="color: var(--eh-accent); font-size: 14px; margin-bottom: 15px;">Project Mentor / Professor</p>
-          <p style="color: var(--eh-muted); font-size: 14px;">Guided the overall system architecture, database planning, and academic standards alignment.</p>
-          <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.linkedin.com/in/gunjan-sethi-23a89711/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-linkedin"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-5 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="eh-card text-center" style="padding: 40px 20px; height: 100%;">
-          <div class="eh-avatar" style="width: 100px; height: 100px; font-size: 40px; margin: 0 auto 20px;">RS</div>
-          <h3 style="color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 5px;">Dr. Rohini Sharma</h3>
-          <p style="color: var(--eh-accent); font-size: 14px; margin-bottom: 15px;">Project Mentor / Professor</p>
-          <p style="color: var(--eh-muted); font-size: 14px;">Supervised UX validation, testing benchmarks, and general project management strategies.</p>
-          <div style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.linkedin.com/in/rohini-sharma-7117b827/" target="_blank" rel="noopener" style="color: var(--eh-muted); font-size: 18px;"><i class="fab fa-linkedin"></i></a>
-          </div>
+      <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="eh-card text-center" style="padding: 40px 24px; height: 100%;">
+          <div class="eh-avatar" style="width: 100px; height: 100px; font-size: 40px; margin: 0 auto 20px;">AD</div>
+          <h3 style="color: #fff; font-size: 22px; font-weight: 600; margin-bottom: 5px;">Archita Dubey</h3>
+          <p style="color: var(--eh-accent); font-size: 14px; margin-bottom: 15px;">Professor &amp; Project Guide</p>
+          <p style="color: var(--eh-muted); font-size: 14px;">Guided the overall system architecture, project planning, and academic standards alignment with continuous supervision and encouragement.</p>
         </div>
       </div>
     </div>

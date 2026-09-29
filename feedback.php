@@ -82,10 +82,9 @@ echo "<form action='feedbacksubmit.php?eventid=".$eventid."' method='post' encty
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
-                        <h3>Mentors</h3>
+                        <h3>Mentor</h3>
                         <ul>
-                            <li><a href="https://www.linkedin.com/in/gunjan-sethi-23a89711/">Dr. Gunjan Sethi</a></li>
-                            <li><a href="https://www.linkedin.com/in/rohini-sharma-7117b827/">Dr. Rohini Sharma</a></li>
+                            <li><a href="#">Archita Dubey</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">

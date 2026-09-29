@@ -101,17 +101,12 @@
             <div class="intro">
                 <h2 class="text-center">Our Mentor</h2>
             </div>
-            <div class="row people" style="height: 400;width: 950;">
+            <div class="row people" style="justify-content: center;">
                 <div class="col-md-6 col-lg-4 item">
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(6).png">
-                        <h4 class="name">Ms. Gunjan Sethi</h4>
-                        <p class="title">Professor</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 item">
-                    <div class="box"><img class="rounded-circle" src="assets/img/Untitled%20design%20(7).png">
-                        <h4 class="name">Ms. Rohini Sharma</h4>
-                        <p class="title">Professor</p>
+                    <div class="box">
+                        <div class="eh-avatar" style="width: 80px; height: 80px; font-size: 30px; margin: 0 auto 16px; border-radius: 50%; background: linear-gradient(135deg, #7C3AED, #2563EB); display: grid; place-items: center; font-weight: 700; color: #fff;">AD</div>
+                        <h4 class="name">Archita Dubey</h4>
+                        <p class="title">Professor &amp; Project Guide</p>
                     </div>
                 </div>
             </div>
@@ -173,10 +168,9 @@
                         </ul>
                     </div>
                     <div class="col-sm-4 col-md-3 item">
-                        <h3>Mentors</h3>
+                        <h3>Mentor</h3>
                         <ul>
-                            <li><a href="https://www.linkedin.com/in/gunjan-sethi-23a89711/">Dr. Gunjan Sethi</a></li>
-                            <li><a href="https://www.linkedin.com/in/rohini-sharma-7117b827/">Dr. Rohini Sharma</a></li>
+                            <li><a href="#">Archita Dubey</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">
