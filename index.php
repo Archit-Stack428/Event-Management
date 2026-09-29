@@ -97,6 +97,26 @@ if ($feat_count < 3) {
             'event_prizes' => 'Certificates of Participation for all. Winner & Runner-Up Trophies & Medals + Special Recognition for Outstanding Performances.',
             'publish_event' => 'yes',
             'open_closed' => 'open'
+        ],
+        [
+            'organizer_name' => 'VSICS (MCA & BCA Dept.)',
+            'event_title' => 'PROMPT ENGINEERING — Ideas Today | Impact Tomorrow',
+            'event_desc' => "Dr. Virendra Swaroop Institute of Computer Studies (VSICS) presents:\nPROMPT ENGINEERING — Ideas Today | Impact Tomorrow!\n\n💡 Explore Ideas • 🧩 Solve Problems • 🚀 Showcase Skills • 🤖 Be Part of the AI Generation!\n\nAn elite competitive challenge designed to test your mastery of generative AI, prompt crafting, and visual creativity using Google Gemini. Unleash your imagination, solve complex thematic briefs, and climb the live AI evaluation leaderboard!",
+            'category' => 'Technical',
+            'eventtype' => 'Single Participant',
+            'min_team' => 0,
+            'max_team' => 0,
+            'event_rules' => "1. Individual Event — No teams allowed.\n2. Gmail ID is mandatory. If 2FA is enabled, bring the same verification mobile number.\n3. Maximum 2 prompts are allowed to craft your final output.\n4. Generate your image using your own Gemini account.\n5. Submit the final generated image + required evidence/screenshot within the given time.\n6. 80 Marks: Automated AI evaluation + live leaderboard.\n7. 20 Marks: Judges' evaluation.\n8. No copying, malpractice, account sharing, or attempts to manipulate the system.\n9. Follow the event time and organizer instructions strictly.\n10. Event Coordinators: Abhay Saini and Abhishek Vishwakarma.",
+            'startdate' => '2026-09-29',
+            'enddate' => '2026-09-29',
+            'event_venue' => 'VSICS Computer Lab & Seminar Hall',
+            'time' => '10:30 AM',
+            'event_price' => 0,
+            'event_thumbnail' => 'prompt_engineering_2026.png',
+            'event_sponsors' => 'Dr. Virendra Swaroop Institute of Computer Studies (VSICS)',
+            'event_prizes' => 'Top Rankers on Live AI Leaderboard & Judges Selection win Winner Trophies & Certificates of Excellence. Participation Certificates for all.',
+            'publish_event' => 'yes',
+            'open_closed' => 'open'
         ]
     ];
 
@@ -140,7 +160,8 @@ if ($gal_count < 3) {
         ['event_name' => 'SPECTRUM 2026 — The Innovation Hackathon', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'spectrum_hackathon_2026.png', 'date' => '2026-10-25', 'category' => 'Technical'],
         ['event_name' => 'Navrang Dandiya 2k26', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'navrang_dandiya_2026.jpg', 'date' => '2026-10-18', 'category' => 'Cultural'],
         ['event_name' => 'PERCEPTION PARADIGM', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'perception_paradigm_2026.png', 'date' => '2026-09-24', 'category' => 'Literary'],
-        ['event_name' => 'SMASHX Badminton Tournament', 'organizer_name' => 'DR. VSIPS Sports Club', 'image' => 'smashx_badminton_2026.jpg', 'date' => '2026-11-10', 'category' => 'Sports']
+        ['event_name' => 'SMASHX Badminton Tournament', 'organizer_name' => 'DR. VSIPS Sports Club', 'image' => 'smashx_badminton_2026.jpg', 'date' => '2026-11-10', 'category' => 'Sports'],
+        ['event_name' => 'Prompt Engineering AI Challenge', 'organizer_name' => 'VSICS Computer Studies', 'image' => 'prompt_engineering_2026.png', 'date' => '2026-09-29', 'category' => 'Technical']
     ];
 
     foreach ($gal_seeds as $g) {
@@ -509,7 +530,9 @@ function openBentoModal(feature) {
         <div style="font-weight:600; color:#fff; margin-bottom:4px;">3. PERCEPTION PARADIGM</div>
         <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Literary • Picture Perception & Thematic Test</div>
         <div style="font-weight:600; color:#fff; margin-bottom:4px;">4. SMASHX — Badminton Tournament</div>
-        <div style="font-size:12px; color:var(--eh-muted);">Sports • Singles & Doubles • DR. VSIPS</div>
+        <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Sports • Singles & Doubles • DR. VSIPS</div>
+        <div style="font-weight:600; color:#fff; margin-bottom:4px;">5. PROMPT ENGINEERING Challenge</div>
+        <div style="font-size:12px; color:var(--eh-muted);">Technical • AI Generation • 80 Marks Automated Leaderboard</div>
       </div>
       <a href="events.php" class="eh-btn eh-btn-primary" style="width:100%; justify-content:center;">Explore All Events</a>
     `;
@@ -937,7 +960,8 @@ function getChatbotResponse(rawQuery) {
            "1. 💻 **SPECTRUM 2026 — The Innovation Hackathon**: Put your technical ingenuity to the test! Teams of 1-3, ₹150 entry, Seminar Hall VSIPS.\n" +
            "2. 🪔 **Navrang Dandiya 2k26**: Grand cultural Dandiya Raas celebration by BCA Final Year! Traditional vibes, DJ beats & prizes. Pass ₹300 (First Come First Serve).\n" +
            "3. 🧠 **PERCEPTION PARADIGM**: Picture Perception & Thematic Aptitude Test! Test observation, storytelling & theme analysis. Free Entry!\n" +
-           "4. 🏸 **SMASHX Badminton Tournament**: College badminton tournament (Singles & Doubles) at DR. VSIPS! Play • Compete • Connect.\n\n" +
+           "4. 🏸 **SMASHX Badminton Tournament**: College badminton tournament (Singles & Doubles) at DR. VSIPS! Play • Compete • Connect.\n" +
+           "5. 🤖 **PROMPT ENGINEERING Challenge**: Competitive Generative AI challenge using Google Gemini with live AI leaderboard!\n\n" +
            "👉 Click **'Events'** in the top navbar to view dates, venue details, and register now!";
   }
 
@@ -1001,6 +1025,26 @@ function getChatbotResponse(rawQuery) {
            "• **Venue**: VSIPS Seminar Hall (24 Sept 2026, 11:00 AM).\n" +
            "• **Entry**: Free Entry with Certificates of Excellence!\n" +
            "• **Coordinators**: Aman Yadav, Abhiroop Tiwari, Aditya Savita.";
+  }
+
+  if (
+    q.includes('prompt') || 
+    q.includes('gemini') || 
+    q.includes('prompt engineering') || 
+    q.includes('ai challenge') || 
+    q.includes('ai event')
+  ) {
+    return "🤖 **PROMPT ENGINEERING — Ideas Today | Impact Tomorrow:**\n\n" +
+           "• **Presented By**: Dr. Virendra Swaroop Institute of Computer Studies (VSICS).\n" +
+           "• **Date & Venue**: 29.09.2026 at VSICS Computer Lab & Seminar Hall (10:30 AM).\n" +
+           "• **Format**: 👤 Individual Event (No teams allowed).\n" +
+           "• **Quick Rules**:\n" +
+           "  - Gmail ID is mandatory (bring verification phone if 2FA enabled).\n" +
+           "  - Max 2 prompts allowed using your own Gemini account.\n" +
+           "  - Submit generated image + screenshot proof within the time limit.\n" +
+           "• **Evaluation**: 🏆 80 Marks Automated AI Evaluation (Live Leaderboard) + 👨‍⚖️ 20 Marks Judges Evaluation.\n" +
+           "• **Coordinators**: Abhay Saini and Abhishek Vishwakarma.\n\n" +
+           "👉 Click **'Events'** in the navbar to view full rules and register for free!";
   }
 
   if (
