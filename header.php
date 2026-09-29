@@ -42,10 +42,29 @@ if (session_status() === PHP_SESSION_NONE) { session_start(); }
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <!-- EVENTHUB PRO styles -->
-<link rel="stylesheet" href="assets/css/eventhub-pro.css">
+<link rel="stylesheet" href="assets/css/eventhub-pro.css?v=2.1">
 <?php if (!empty($load_dashboard_assets)): ?>
-<link rel="stylesheet" href="assets/css/dashboard-pro.css">
+<link rel="stylesheet" href="assets/css/dashboard-pro.css?v=2.1">
 <?php endif; ?>
+<style>
+  .eh-nav .container-max { max-width: 1480px !important; padding: 0 36px !important; width: 100% !important; }
+  .eh-nav-inner { height: 76px !important; gap: 36px !important; justify-content: space-between !important; }
+  .eh-logo { margin-right: 28px !important; gap: 12px !important; flex-shrink: 0 !important; }
+  .eh-nav-links { gap: 34px !important; flex-shrink: 0 !important; }
+  .eh-nav-links a { font-size: 14.5px !important; padding: 6px 4px !important; white-space: nowrap !important; }
+  .eh-nav-actions { gap: 14px !important; flex-shrink: 0 !important; margin-left: auto !important; }
+  @media (max-width: 1320px) {
+    .eh-nav .container-max { padding: 0 20px !important; }
+    .eh-nav-inner { gap: 20px !important; }
+    .eh-logo { margin-right: 14px !important; font-size: 20px !important; }
+    .eh-nav-links { gap: 22px !important; }
+    .eh-nav-actions { gap: 10px !important; }
+  }
+  @media (max-width: 1120px) {
+    .eh-nav-links { gap: 16px !important; }
+    .eh-nav-links a { font-size: 13.5px !important; }
+  }
+</style>
 </head>
 <body>
 <div class="eh-bg-fx">
