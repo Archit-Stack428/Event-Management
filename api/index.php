@@ -8,11 +8,16 @@ error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 
 chdir(__DIR__ . '/..');
 
-set_exception_handler(function($e) {
-    http_response_code(500);
-    echo "<h1>Error</h1><pre>" . htmlspecialchars($e->getMessage()) . "\n" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
-    exit;
+register_shutdown_function(function() {
+    $err = error_get_last();
+    if ($err && ($err['type'] & (E_ERROR | E_PARSE | E_CORE_ERROR | E_COMPILE_ERROR))) {
+        http_response_code(500);
+        header('Content-Type: text/plain');
+        echo "PHP FATAL ERROR in Lambda:\n";
+        print_r($err);
+    }
 });
+
 
 // Initialize database connection & validate persistent login token on every serverless invocation
 require_once __DIR__ . '/../dbconnect.php';
