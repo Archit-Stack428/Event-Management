@@ -281,7 +281,24 @@ $shareEnc = urlencode($shareUrl);
 
       <div class="eh-tab-panel active" id="tab-overview">
         <h2>About this event</h2>
-        <div class="eh-prose"><?php echo nl2br(htmlspecialchars($desc ?: 'No description provided yet.')); ?></div>
+        <div class="eh-prose">
+          <?php 
+            $cleanDesc = htmlspecialchars($desc ?: 'No description provided yet.');
+            $linkedDesc = preg_replace('!(https?://[^\s<]+)!i', '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:var(--eh-accent); text-decoration:underline; font-weight:600; word-break:break-all;"><i class="fas fa-external-link-alt" style="font-size:12px; margin-right:4px;"></i>$1</a>', $cleanDesc);
+            echo nl2br($linkedDesc);
+          ?>
+        </div>
+        <?php if (preg_match('!(https?://docs\.google\.com/forms/[^\s<]+)!i', $desc, $formMatches)): ?>
+          <div style="margin: 20px 0; padding: 16px 20px; background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.35); border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+            <div>
+              <div style="color: #fff; font-weight: 700; font-size: 15px;"><i class="fab fa-google" style="color:#fbbc05; margin-right:8px;"></i>Official Registration Form</div>
+              <div style="color: var(--eh-muted); font-size: 13px;">You can also fill out the official coordinator form directly</div>
+            </div>
+            <a href="<?php echo htmlspecialchars($formMatches[1]); ?>" target="_blank" rel="noopener noreferrer" class="eh-btn eh-btn-primary eh-btn-sm" style="background: linear-gradient(135deg, #10B981, #059669); border: none; padding: 8px 18px;">
+              <i class="fas fa-external-link-alt"></i> Open Google Form
+            </a>
+          </div>
+        <?php endif; ?>
         <div class="eh-event-facts">
           <div class="eh-fact"><i class="fas fa-tag"></i><div><div class="eh-fact-lbl">Category</div><div class="eh-fact-val"><?php echo htmlspecialchars($category); ?></div></div></div>
           <div class="eh-fact"><i class="fas fa-users"></i><div><div class="eh-fact-lbl">Type</div><div class="eh-fact-val"><?php echo htmlspecialchars($eventtype); ?></div></div></div>

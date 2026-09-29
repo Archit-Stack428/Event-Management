@@ -77,6 +77,26 @@ if ($feat_count < 3) {
             'event_prizes' => 'Certificate of Excellence for Top Storytellers & Thematic Thinkers.',
             'publish_event' => 'yes',
             'open_closed' => 'open'
+        ],
+        [
+            'organizer_name' => 'DR. VSIPS Sports Club & BCA',
+            'event_title' => 'SMASHX — Where Sportsmanship Meets Skill',
+            'event_desc' => "Get ready for SMASHX — Play • Compete • Connect!\n\nA premier college badminton tournament focused on competition, sportsmanship, fitness, and fun. Compete individually or as a doubles team, showcase your skills, and enjoy a vibrant competitive atmosphere.\n\n🏸 EVENT CATEGORIES:\n• Men's Singles: Individual competition for male participants.\n• Women's Singles: Individual competition for female participants.\n• Doubles: Two-player teams (2 Boys / 2 Girls / 1 Boy + 1 Girl).\n\n🎯 Why Participate?\n🔥 Test your skills & build confidence\n🏆 Compete with fellow students & win awards\n🤝 Meet and play with passionate badminton players\n⚡ Experience fast-paced competitive badminton\n\nRegistration Form Link:\nhttps://docs.google.com/forms/d/e/1FAIpQLSfumCjJ2H_48ES7Vo7-5s9-tlxcU8BGWHrkzVXhsRrn_qLg_w/viewform?usp=publish-editor",
+            'category' => 'Sports',
+            'eventtype' => 'Singles & Doubles',
+            'min_team' => 1,
+            'max_team' => 2,
+            'event_rules' => "1. Bring your own badminton racket.\n2. Report on time for scheduled matches.\n3. Matches will follow the format decided by event coordinators.\n4. Serves must land in the correct diagonal service court.\n5. Shuttle touching the boundary line is IN.\n6. Maintain proper sportsmanship and discipline.\n7. Unfair play or misconduct will result in disqualification.\n8. Referee/judges' decisions regarding matches will be final.\n9. Event Coordinators: Abhinav Singh, Arav Misra, Sagar Yadav, Prachi Pandey, Atharvi Agnihotri, Harshika.",
+            'startdate' => '2026-11-10',
+            'enddate' => '2026-11-11',
+            'event_venue' => 'DR. VSIPS (Badminton Arena)',
+            'time' => 'To Be Announced',
+            'event_price' => 0,
+            'event_thumbnail' => 'smashx_badminton_2026.jpg',
+            'event_sponsors' => 'DR. VSIPS Sports Department',
+            'event_prizes' => 'Certificates of Participation for all. Winner & Runner-Up Trophies & Medals + Special Recognition for Outstanding Performances.',
+            'publish_event' => 'yes',
+            'open_closed' => 'open'
         ]
     ];
 
@@ -119,7 +139,8 @@ if ($gal_count < 3) {
     $gal_seeds = [
         ['event_name' => 'SPECTRUM 2026 — The Innovation Hackathon', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'spectrum_hackathon_2026.png', 'date' => '2026-10-25', 'category' => 'Technical'],
         ['event_name' => 'Navrang Dandiya 2k26', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'navrang_dandiya_2026.jpg', 'date' => '2026-10-18', 'category' => 'Cultural'],
-        ['event_name' => 'PERCEPTION PARADIGM', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'perception_paradigm_2026.png', 'date' => '2026-09-24', 'category' => 'Literary']
+        ['event_name' => 'PERCEPTION PARADIGM', 'organizer_name' => 'VSICS BCA Final Year', 'image' => 'perception_paradigm_2026.png', 'date' => '2026-09-24', 'category' => 'Literary'],
+        ['event_name' => 'SMASHX Badminton Tournament', 'organizer_name' => 'DR. VSIPS Sports Club', 'image' => 'smashx_badminton_2026.jpg', 'date' => '2026-11-10', 'category' => 'Sports']
     ];
 
     foreach ($gal_seeds as $g) {
@@ -486,7 +507,9 @@ function openBentoModal(feature) {
         <div style="font-weight:600; color:#fff; margin-bottom:4px;">2. Navrang Dandiya 2k26</div>
         <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Cultural • Dandiya Raas • First Come First Serve</div>
         <div style="font-weight:600; color:#fff; margin-bottom:4px;">3. PERCEPTION PARADIGM</div>
-        <div style="font-size:12px; color:var(--eh-muted);">Literary • Picture Perception & Thematic Test</div>
+        <div style="font-size:12px; color:var(--eh-muted); margin-bottom:10px;">Literary • Picture Perception & Thematic Test</div>
+        <div style="font-weight:600; color:#fff; margin-bottom:4px;">4. SMASHX — Badminton Tournament</div>
+        <div style="font-size:12px; color:var(--eh-muted);">Sports • Singles & Doubles • DR. VSIPS</div>
       </div>
       <a href="events.php" class="eh-btn eh-btn-primary" style="width:100%; justify-content:center;">Explore All Events</a>
     `;
@@ -913,7 +936,8 @@ function getChatbotResponse(rawQuery) {
     return "🎪 **Current Trending Events on EventHub Pro:**\n\n" +
            "1. 💻 **SPECTRUM 2026 — The Innovation Hackathon**: Put your technical ingenuity to the test! Teams of 1-3, ₹150 entry, Seminar Hall VSIPS.\n" +
            "2. 🪔 **Navrang Dandiya 2k26**: Grand cultural Dandiya Raas celebration by BCA Final Year! Traditional vibes, DJ beats & prizes. Pass ₹300 (First Come First Serve).\n" +
-           "3. 🧠 **PERCEPTION PARADIGM**: Picture Perception & Thematic Aptitude Test! Test observation, storytelling & theme analysis. Free Entry!\n\n" +
+           "3. 🧠 **PERCEPTION PARADIGM**: Picture Perception & Thematic Aptitude Test! Test observation, storytelling & theme analysis. Free Entry!\n" +
+           "4. 🏸 **SMASHX Badminton Tournament**: College badminton tournament (Singles & Doubles) at DR. VSIPS! Play • Compete • Connect.\n\n" +
            "👉 Click **'Events'** in the top navbar to view dates, venue details, and register now!";
   }
 
@@ -983,13 +1007,22 @@ function getChatbotResponse(rawQuery) {
     q.includes('sports') || 
     q.includes('game') || 
     q.includes('tournament') || 
-    q.includes('spardha') || 
-    q.includes('cricket') || 
-    q.includes('football')
+    q.includes('badminton') || 
+    q.includes('smashx') || 
+    q.includes('racket') ||
+    q.includes('shuttle')
   ) {
-    return "🏆 **Sports Meets & Tournaments:**\n\n" +
-           "• **Spardha Annual Sports Meet**: Inter-college cricket, football, volleyball, badminton, and athletics.\n" +
-           "• Check the **Sports** category on the Events page for schedule, fixtures, and participation fees.";
+    return "🏸 **SMASHX — College Badminton Tournament:**\n\n" +
+           "• **Tagline**: Where Sportsmanship Meets Skill (Play • Compete • Connect)\n" +
+           "• **Venue**: DR. VSIPS (Badminton Court)\n" +
+           "• **Event Categories**:\n" +
+           "  - 👤 Men's Singles (Individual)\n" +
+           "  - 👤 Women's Singles (Individual)\n" +
+           "  - 👥 Doubles (2 Boys / 2 Girls / 1 Boy + 1 Girl)\n" +
+           "• **Rules**: Bring your own racket, diagonal serves, boundary line touching is IN.\n" +
+           "• **Perks**: Participation Certificates for all, Winner & Runner-Up Trophies & Medals!\n" +
+           "• **Coordinators**: Abhinav Singh, Arav Misra, Sagar Yadav, Prachi Pandey, Atharvi Agnihotri, Harshika.\n\n" +
+           "👉 **Register on Google Form**: [Open Registration Form](https://docs.google.com/forms/d/e/1FAIpQLSfumCjJ2H_48ES7Vo7-5s9-tlxcU8BGWHrkzVXhsRrn_qLg_w/viewform?usp=publish-editor)";
   }
 
   // 15. PRICING & SUBSCRIPTION PLANS
