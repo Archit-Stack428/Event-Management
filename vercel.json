@@ -23,6 +23,10 @@
       "dest": "/images/$1"
     },
     {
+      "src": "/api/diag",
+      "dest": "/api/diag.php"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
